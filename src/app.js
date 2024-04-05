@@ -25,5 +25,5 @@ app.listen(app.get('port'), () => {
 });
 
 app.get('/', (request, response) => {
-    response.render('home');
+    response.render('login');
 });

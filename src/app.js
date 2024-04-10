@@ -25,5 +25,8 @@ app.listen(app.get('port'), () => {
 });
 
 app.get('/', (request, response) => {
-    response.render('home');
+    response.render('login');
+});
+app.get('/estudiantes', (request, response) => {
+    response.render('dasboard_estudiantes');
 });

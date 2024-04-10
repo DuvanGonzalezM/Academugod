@@ -9,15 +9,13 @@ const conection = mysql.createConnection({
 })
 
 console.log(process.env.DATABASE_HOST)
-console.log(process.env.DATABASE_USER)
-console.log(process.env.DATABASE_PASSWORD)
 console.log(process.env.DATABASE_NAME)
 conection.connect( (err) =>{
     if(err) throw err
     console.log('La conexion funciona')
 })
 
-conection.query("SELECT * FROM user", (err, rows) =>{
+conection.query("SELECT * FROM usuarios", (err, rows) =>{
     if(err) throw err
     console.log('Los datos de la tabla son:')
     console.log(rows)

@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>ACADEMUGOD</title>
 </head>
 <body>
-    <h1>Layout - Main</h1>
-    <img src="../../public/assets/img/logo.png" alt="">
+    <img src="/assets/img/logo.png" alt="" style="width: 250px;background-color: #273B69;">
+    {{#unless logout }}
+        <a href="/logout">Salir</a>
+    {{/unless}}
     {{{body}}}
 </body>
 </html>

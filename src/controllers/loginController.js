@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 
 function login(req, res){
     if(req.session.loggedin != true || !req.session.rol){
-        res.render('login/index');
+        res.render('login/index', { logout: true });
     }else{
         res.redirect('/');
     }
@@ -15,7 +15,7 @@ function auth(req, res){
             if (userdata.length > 0) {
                 bcrypt.compare(data.password, userdata[0].password, (err, isMatch) => {
                     if (!isMatch) {
-                        res.render('login/index', { error: 'Error: la constraseña es incorrecta!' })                    
+                        res.render('login/index', { error: 'Error: la constraseña es incorrecta!', logout: true})                    
                     } else {
                         req.session.loggedin = true;
                         req.session.name = data.username;
@@ -25,7 +25,7 @@ function auth(req, res){
                     }
                 });
             } else {
-                res.render('login/index', { error: 'Error: usuario no existe!' })
+                res.render('login/index', { error: 'Error: usuario no existe!', logout: true })
             }
         });
     });

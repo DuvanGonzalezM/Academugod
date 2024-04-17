@@ -12,6 +12,7 @@ const app = express();
 
 app.set('port', 4000);
 app.set('views', __dirname + '/views');
+app.use('/assets', express.static('public'));
 
 app.engine('.hbs', engine({
     extname: '.hbs'
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+console.log(process.env.DATABASE_HOST);
 app.use(myconnection(mysql, {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,

@@ -24,7 +24,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-console.log(process.env.DATABASE_HOST);
 app.use(myconnection(mysql, {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,

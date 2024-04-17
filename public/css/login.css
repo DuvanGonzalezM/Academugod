@@ -1,0 +1,33 @@
+.body-login {
+    background-color: #273B69;
+}
+
+.logo-acade{
+    width: 25%;
+    margin: auto;
+}
+
+.card-form{
+    background-color: #D5D5D5;
+}
+
+.form-login {
+    text-align: left;
+    display: grid;
+}
+
+.form-login>button {
+    width: 50%;
+    margin: auto;
+    background-color: #93bc35;
+}
+
+.error-form{
+    color: red;
+    text-align: right;
+}
+
+.logo-unimon{
+    width: 15%;
+    margin: auto;
+}

@@ -12,6 +12,7 @@ const app = express();
 
 app.set('port', 4000);
 app.set('views', __dirname + '/views');
+app.use('/assets', express.static('public'));
 
 app.engine('.hbs', engine({
     extname: '.hbs'

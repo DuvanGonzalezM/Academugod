@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const loginRoutes = require('./routes/login');
 const viewsRoutes = require('./routes/views');
 
-prueba merge
 const app = express();
 
 app.set('port', 4000);

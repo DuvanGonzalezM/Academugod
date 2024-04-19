@@ -31,7 +31,7 @@ app.use(myconnection(mysql, {
     password: process.env.DATABASE_PASSWORD,
     port: process.env.DATABASE_PORT,
     database: process.env.DATABASE_NAME
-}));
+}, 'single'));
 
 app.use(session({
     secret: 'secret',

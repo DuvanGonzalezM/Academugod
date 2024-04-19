@@ -12,9 +12,7 @@
         <header>
             <img class="logo-header" src="/assets/img/logo.png" alt="Icono">
             <h1 class="text-header">Bienvenido, {{#if userName}} {{userName}} {{/if}}</h1>
-            {{#unless logout }}
-                <a href="/logout" class="btn btn-danger logout">Salir</a>
-            {{/unless}}
+            <a href="/logout" class="btn btn-danger logout">Salir</a>
         </header>
 
         <div class="content">
@@ -25,5 +23,6 @@
             <img class="logo-footer" src="/assets/img/Unimonserrate logo.png" alt="Icono">
             <span class="copyright">Copyright © Unimonserrate - Mosquera 2024</span>
         </footer>
+        <script type="module" src="/assets/js/main.js"></script>
     </body>
 </html>

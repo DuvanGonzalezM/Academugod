@@ -20,6 +20,7 @@
     width: 50%;
     margin: auto;
     background-color: #93bc35;
+    border: #93bc35 2px solid !important;
 }
 
 .error-form{

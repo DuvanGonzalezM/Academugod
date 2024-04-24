@@ -17,6 +17,12 @@ function dashboard(req, res){
     }
 }
 
+function cargarN(req , res){
+    res.render('docentes/cargar_notas');
+}
+
+
 module.exports = {
     dashboard,
+    cargarN, 
 }

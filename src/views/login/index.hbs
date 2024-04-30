@@ -1,0 +1,29 @@
+<section>
+    <div class="container py-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card card-form" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <h2 class="fw-bold mb-2 text-uppercase">Iniciar sesión</h2>
+                        <form action="" method="post" class="form-login mt-5">
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label" for="username">Nombre de usuario:</label>
+                                <input type="text" id="username" name="username" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="form-outline form-white mb-3">
+                                <label class="form-label" for="password">Contraseña:</label>
+                                <input type="password" id="password" name="password" class="form-control form-control-lg" required>
+                            </div>
+                            {{#if error }}
+                                <div class="error-form">
+                                    {{error}}
+                                </div>
+                            {{/if}}
+                            <button class="btn btn-lg mt-4" type="submit">Iniciar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

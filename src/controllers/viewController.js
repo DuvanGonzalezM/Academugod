@@ -16,7 +16,10 @@ function dashboard(req, res){
         }
     }
 }
-
+function inscribirMaterias (req,res){
+    res.render('estudiantes/inscribirMaterias');
+}
 module.exports = {
     dashboard,
+    inscribirMaterias,
 }

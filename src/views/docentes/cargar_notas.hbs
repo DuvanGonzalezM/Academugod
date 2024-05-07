@@ -1,59 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargar notas</title>
+	<script>
+		function calcularpromedio(id){
+			const corte1 = parseFloat(document.getElementsByName('primer_corte_'+ id)[0].value) || 0 ;
+			const corte1 = parseFloat(document.getElementsByName('primer_corte_'+ id)[0].value) || 0 ;
+			const corte1 = parseFloat(document.getElementsByName('primer_corte_'+ id)[0].value) || 0 ;
+			
+		}
 
-
-<h1>Por vavor, digita las notas:</h1>
-<link rel="stylesheet" href="/assets/css/docentes/cargar_notas.css">
-<table class="container">
-	<thead>
-		<tr>
-			<th><h1>Sites</h1></th>
-			<th><h1>Primer corte</h1></th>
-			<th><h1>Segundo corte</h1></th>
-			<th><h1>Tercer corte</h1></th>
-            <th><h1>Promedio:</h1></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Hernan Jambooz </td>
-			<td>000</td>
-			<td>000</td>                      
-			<td>000</td>
-            <td>000</td>
-		</tr>
-		<tr>
-			<td>Duvan Morato</td>
-			<td>000</td>
-			<td>000</td>
-			<td>000</td>
-            <td>000</td>
-		</tr>
-		<tr>
-			<td>Jorge Orozco</td>
-			<td>000</td>
-			<td>000</td>
-			<td>000</td>
-            <td>000</td>
-		</tr>
-    <tr>
-			<td>Edrian Sandoval</td>
-			<td>000</td>
-			<td>000</td>
-			<td>000</td>
-            <td>000</td>
-		</tr>
-    <tr>
-			<td>Yulieth Saavedra</td>
-			<td>000</td>
-			<td>000</td>
-			<td>000</td>
-            <td>000</td>
-		</tr>
-    <tr>
-			<td>Jersson</td>
-			<td>000</td>
-			<td>000</td>
-			<td>000</td>
-            <td>000</td>
-		</tr>
-	</tbody>
-</table>
+	</script>
+</head>
+<body>
+    <table border="3">
+        <thead> 
+            <tr>
+                <th>ID:</th>
+                <th>NOMBRE:</th>
+                <th>PRIMER CORTE:</th>
+                <th>SEGUNDO CORTE:</th>
+				<th>TERCER CORTE:</th>
+				<th>PROMEDIO:</th>
+            </tr>
+        </thead>    
+             <tr>
+                <td>1</td>
+                <td>Hernan Benjamin Jambooz Espitia</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_1" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>
+             <tr>
+                <td>2</td>
+                <td>Nicolas Muñoz</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_2" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>
+             <tr>
+                <td>3</td>
+                <td>Duvan Morato</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_3" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>   
+             <tr>
+                <td>4</td>
+                <td>Jorge Orozco</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_4" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_4" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_4" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_4" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>
+             <tr>
+                <td>5</td>
+                <td>Edrian Sandoval</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_5" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_5" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_5" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_5" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>
+             <tr>
+                <td>6</td>
+                <td>Yulieth Saavedra</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_6" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_6" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_6" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_6" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>
+             <tr>
+                <td>7</td>
+                <td>Jersson</td>   <!-- Valor que tiene que se arrastrado de BD -->
+                <td><input type="text" name="primer_corte_7" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="segundo_corte_7" /></td> <!-- Valor que debe ser enviado a BD -->
+                <td><input type="text" name="tercer_corte_7" /></td> <!-- Valor que debe ser enviado a BD -->
+				<td><input type="text" name="Promedio_7" /></td> <!-- Valor que debe ser calculado por js -->
+            </tr>	
+        </tbody>
+		
+    </table>
+</body>
+</html>

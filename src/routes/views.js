@@ -1,8 +1,31 @@
-const express = require('express');
 const viewController = require('../controllers/viewController');
 
-const router = express.Router();
+var routes = [];
+var routesStudents = [];
+var routesTeachers = [];
+var routesAdmin = [];
 
-router.get('/', viewController.dashboard);
+routes.push(
+    {
+        'method': 'get',
+        'path': '/',
+        'function': viewController.dashboard
+    },
+);
 
-module.exports = router;
+// Rutas estudiantes
+routesStudents.push(
+    {
+        'method': 'get',
+        'path': '/estudiante/horario',
+        'function': viewController.horario
+    },
+);
+
+routes = routes.concat(
+    routesStudents,
+    routesTeachers,
+    routesAdmin,
+);
+
+module.exports = routes;

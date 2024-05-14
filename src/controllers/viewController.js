@@ -20,9 +20,13 @@ function dashboard(req, res){
 function cargarN(req , res){
     res.render('docentes/cargar_notas');
 }
+function regresarD(req , res){
+    res.render('docentes/dashboard');
+}
 
 
 module.exports = {
     dashboard,
     cargarN, 
+    regresarD,
 }

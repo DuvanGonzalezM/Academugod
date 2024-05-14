@@ -1,88 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Cargar notas</title>
-	<script>
-		function calcularpromedio(id){
-			const corte1 = parseFloat(document.getElementsByName('primer_corte_'+ id)[0].value) || 0 ;
-			const corte1 = parseFloat(document.getElementsByName('primer_corte_'+ id)[0].value) || 0 ;
-			const corte1 = parseFloat(document.getElementsByName('primer_corte_'+ id)[0].value) || 0 ;
-			
-		}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantilla</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
+  
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+  
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    footer {
+      background-color: #d9d9d9;
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+    }
+    .centered-box {
+      text-align: center;
+    }
+    .card {
+      border-width: 3px;
+      background-color: #f2f2f2;
+      border-color: #20c997;
+      position: relative;
+      padding: 5px 45px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      margin: 15px 15px;
+      cursor: pointer;
+      border-radius: 35px;
+    }
+   
+    td.promedio.bg-light {
+      background-color: #f8f9fa !important; /* Un gris claro de Bootstrap, definido como bg-light */
+    }
+  
+  </style>
 
-	</script>
+  <!-- DataTables initialization -->
+  <script>
+    $(document).ready(function() {
+      $('#example').DataTable();
+    });
+  </script>
+
 </head>
 <body>
-    <table border="3">
-        <thead> 
-            <tr>
-                <th>ID:</th>
-                <th>NOMBRE:</th>
-                <th>PRIMER CORTE:</th>
-                <th>SEGUNDO CORTE:</th>
-				<th>TERCER CORTE:</th>
-				<th>PROMEDIO:</th>
-            </tr>
-        </thead>    
-             <tr>
-                <td>1</td>
-                <td>Hernan Benjamin Jambooz Espitia</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_1" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>
-             <tr>
-                <td>2</td>
-                <td>Nicolas Muñoz</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_2" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>
-             <tr>
-                <td>3</td>
-                <td>Duvan Morato</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_3" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>   
-             <tr>
-                <td>4</td>
-                <td>Jorge Orozco</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_4" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_4" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_4" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_4" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>
-             <tr>
-                <td>5</td>
-                <td>Edrian Sandoval</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_5" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_5" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_5" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_5" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>
-             <tr>
-                <td>6</td>
-                <td>Yulieth Saavedra</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_6" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_6" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_6" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_6" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>
-             <tr>
-                <td>7</td>
-                <td>Jersson</td>   <!-- Valor que tiene que se arrastrado de BD -->
-                <td><input type="text" name="primer_corte_7" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="segundo_corte_7" /></td> <!-- Valor que debe ser enviado a BD -->
-                <td><input type="text" name="tercer_corte_7" /></td> <!-- Valor que debe ser enviado a BD -->
-				<td><input type="text" name="Promedio_7" /></td> <!-- Valor que debe ser calculado por js -->
-            </tr>	
-        </tbody>
-		
-    </table>
+
+<table id="example" class="table table-striped table-bordered mt-2" style="width:100%" border="3">
+  <thead>
+    <tr>
+      <th>Identificación</th>
+      <th>Nombre</th>
+      <th>Primer corte</th>
+      <th>Segundo corte</th>
+      <th>Tercer corte</th>
+      <th>Promedio</th>
+      <th>Edición</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Joselito Gaitan</td> <!-- Valor que debe ser arrastrado por BD -->
+      <td><input type="text" name="primer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td><input type="text" name="segundo_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td><input type="text" name="tercer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td class="promedio bg-light">12312</td> <!-- Valor que debe ser calculado por js -->
+      <td>
+        <button type="button" class="btn btn-primary">Editar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Juan Andrés Hernandez</td> <!-- Valor que debe ser arrastrado por BD -->
+      <td><input type="text" name="primer_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td><input type="text" name="segundo_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td><input type="text" name="tercer_corte_2" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td class="promedio bg-light">12123</td> <!-- Valor que debe ser calculado por js -->
+      <td>
+        <button type="button" class="btn btn-primary">Editar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Jorge Andrés Colmernares</td> <!-- Valor que debe ser arrastrado por BD -->
+      <td><input type="text" name="primer_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td><input type="text" name="segundo_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td><input type="text" name="tercer_corte_3" /></td> <!-- Valor que debe ser enviado a BD -->
+      <td class="promedio bg-light">1234</td> <!-- Valor que debe ser calculado por js -->
+      <td>
+        <button type="button" class="btn btn-primary">Editar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
+      </td>
+    </tr>
+    <!-- Agregar más filas según sea necesario -->
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center align-items-center mt-0 mb-1">
+  <a href="/docentes/dashboard" type="button" class="btn btn-danger">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+    </svg>  Atrás
+  </a>
+  <a href="" class="btn btn-success">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+    </svg>
+    Cargar
+  </a>
+</div>
+
 </body>
 </html>

@@ -53,9 +53,14 @@
 <script> 
      $(document).ready(function() {
       $('#example').DataTable();
+
+      $('input[name^="primer_corte"], input[name^="segundo_corte"], input[name^="tercer_corte"]').change(function(){
+      calcularpromedio(this);
+      });
     });
+
   $(document).ready(function(){
-    function calcularpromedio(){
+    function calcularpromedio(input){
 
       var numeroEstudiante = $(this).closest('tr').index() + 1;
 

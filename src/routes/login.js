@@ -1,10 +1,23 @@
-const express = require('express');
 const loginController = require('../controllers/loginController');
 
-const router = express.Router();
+var routes = [];
 
-router.get('/login', loginController.login);
-router.post('/login', loginController.auth);
-router.get('/logout', loginController.logout);
+routes.push(
+    {
+        'method': 'get',
+        'path': '/login',
+        'function': loginController.login
+    },
+    {
+        'method': 'post',
+        'path': '/login',
+        'function': loginController.auth
+    },
+    {
+        'method': 'get',
+        'path': '/logout',
+        'function': loginController.logout
+    },
+);
 
-module.exports = router;
+module.exports = routes;

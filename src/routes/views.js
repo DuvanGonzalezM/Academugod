@@ -1,10 +1,51 @@
-const express = require('express');
 const viewController = require('../controllers/viewController');
 
-const router = express.Router();
+var routes = [];
+var routesStudents = [];
+var routesTeachers = [];
+var routesAdmin = [];
 
-router.get('/', viewController.dashboard);
-router.get('/docentes/cargar_notas', viewController.cargarN);
-router.get('/docentes/dashboard', viewController.regresarD);
+routes.push(
+    {
+        'method': 'get',
+        'path': '/',
+        'function': viewController.dashboard
+    },
+);
 
-module.exports = router;
+
+// Rutas estudiantes
+routesStudents.push(
+    {
+        'method': 'get',
+        'path': '/estudiante/horario',
+        'function': viewController.horario
+    },
+);
+
+// Rutas docentes
+routesTeachers.push(
+    {
+        'method': 'get',
+        'path': '/estudiante/horario',
+        'function': viewController.horario
+    },
+    {
+        'method': 'get',
+        'path': '/docentes/cargar_notas',
+        'function': viewController.cargarN
+    },
+    {
+        'method': 'get',
+        'path': '/docentes/dashboard',
+        'function': viewController.regresarD
+    },
+);
+
+routes = routes.concat(
+    routesStudents,
+    routesTeachers,
+    routesAdmin,
+);
+
+module.exports = routes;

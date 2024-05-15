@@ -1,36 +1,30 @@
 const bcrypt = require('bcrypt');
+const dbConection = require('../services/dataBaseService');
 
 function login(req, res){
-    if(req.session.loggedin != true || !req.session.rol){
-        res.render('login/index', {layout: 'login.hbs' });
-    }else{
-        res.redirect('/');
-    }
+    res.render('login/index', {layout: 'login.hbs' });
 }
 
-function auth(req, res){
+async function auth(req, res){
     const data = req.body;
-    req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM usuarios WHERE nombre_usuario = ?', [data.username], (err, userdata) => {
-            if(err){
-                res.render('login/index', { layout: 'login.hbs', error: 'Error en la conexion con la base de datos' })
-            }
-            if (userdata.length > 0) {
-                bcrypt.compare(data.password, userdata[0].password, (err, isMatch) => {
-                    if (!isMatch) {
-                        res.render('login/index', { layout: 'login.hbs', error: 'La constraseña es incorrecta!'})                    
-                    } else {
-                        req.session.loggedin = true;
-                        req.session.name = data.username;
-                        req.session.rol = userdata[0].rol;
-
-                        res.redirect('/');
-                    }
-                });
-            } else {
-                res.render('login/index', { layout: 'login.hbs', error: 'Usuario no existe!' })
-            }
-        });
+    user = await dbConection.selectRaw('SELECT * FROM usuarios WHERE nombre_usuario = ?', [data.username]).then((user) => {
+        if (user.length > 0) {
+            bcrypt.compare(data.password, user[0].password, (err, isMatch) => {
+                if (!isMatch) {
+                    res.render('login/index', { layout: 'login.hbs', error: 'La constraseña es incorrecta!'})                    
+                } else {
+                    req.session.loggedin = true;
+                    req.session.name = data.username;
+                    req.session.rol = user[0].rol;
+    
+                    res.redirect('/');
+                }
+            });
+        } else {
+            res.render('login/index', { layout: 'login.hbs', error: 'Usuario no existe!' })
+        }
+    }).catch((error) => {
+        res.status(500).render('login/index', { layout: 'login.hbs', error: 'Error con la conexión a la base de datos!' })
     });
 }
 

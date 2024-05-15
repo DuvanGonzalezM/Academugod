@@ -4,5 +4,7 @@ const viewController = require('../controllers/viewController');
 const router = express.Router();
 
 router.get('/', viewController.dashboard);
+router.get('/docentes/cargar_notas', viewController.cargarN);
+router.get('/docentes/dashboard', viewController.regresarD);
 
 module.exports = router;

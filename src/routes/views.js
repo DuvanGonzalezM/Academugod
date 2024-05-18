@@ -9,7 +9,8 @@ routes.push(
     {
         'method': 'get',
         'path': '/',
-        'function': viewController.dashboard
+        'function': viewController.dashboard,
+        'role': 0
     },
 );
 
@@ -18,7 +19,8 @@ routesStudents.push(
     {
         'method': 'get',
         'path': '/estudiante/horario',
-        'function': viewController.horario
+        'function': viewController.horario,
+        'role': 1
     },
 );
 

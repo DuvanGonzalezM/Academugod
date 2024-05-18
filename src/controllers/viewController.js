@@ -11,6 +11,9 @@ function dashboard(req, res){
         case '3':
             res.render('administrativos/dashboard', {userName: req.session.name});
             break;
+        case '4':
+            res.render('redes/dashboard', {userName: req.session.name});
+            break;
         default:
             res.render('estudiantes/dashboard', {userName: req.session.name});
     }

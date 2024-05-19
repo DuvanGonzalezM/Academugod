@@ -16,7 +16,7 @@
     display: grid;
 }
 
-.form-login>button {
+.form-login button {
     width: 50%;
     margin: auto;
     background-color: #93bc35;
@@ -31,21 +31,4 @@
 .logo-unimon{
     width: 15%;
     margin: auto;
-}
-
-#sun{
-    width: 10%;
-    position: absolute;
-    left: 8%;
-    top: 5%;
-    margin: -3% 0 0 -3%;
-    z-index: 100000 !important;
-}
-#panel{
-    width: 15%;
-    position: absolute;
-    left: 0;
-    top: 1%;
-    transform: rotate(176deg);
-    margin: -1% 0 0 -1%;
 }

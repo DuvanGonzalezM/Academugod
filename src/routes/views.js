@@ -1,4 +1,5 @@
 const viewController = require('../controllers/viewController');
+const redesController = require('../controllers/redesController');
 
 var routes = [];
 var routesStudents = [];
@@ -21,6 +22,18 @@ routesStudents.push(
         'path': '/estudiante/horario',
         'function': viewController.horario,
         'role': 1
+    },
+    {
+        'method': 'get',
+        'path': '/temperaturas',
+        'function': redesController.getTemperaturas,
+        'role': 4
+    },
+    {
+        'method': 'post',
+        'path': '/temperaturas',
+        'function': redesController.sendTemperaturas,
+        'role': 4
     },
 );
 

@@ -7,7 +7,7 @@ function login(req, res){
 
 async function auth(req, res){
     const data = req.body;
-    user = await dbConection.selectRaw('SELECT * FROM usuarios WHERE nombre_usuario = ?', [data.username]).then((user) => {
+    await dbConection.selectRaw('SELECT * FROM usuarios WHERE nombre_usuario = ?', [data.username]).then((user) => {
         if (user.length > 0) {
             bcrypt.compare(data.password, user[0].password, (err, isMatch) => {
                 if (!isMatch) {

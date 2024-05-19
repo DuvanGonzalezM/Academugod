@@ -1,5 +1,6 @@
 var sun = document.getElementById('sun');
 var body = document.getElementsByTagName('body');
+var html = document.getElementsByTagName('html');
 
 sun.onmousedown = function(event) {
     sun.style.position = 'absolute';
@@ -10,15 +11,17 @@ sun.onmousedown = function(event) {
     function moveAt(pageX, pageY) {
         sun.style.left = pageX - sun.offsetWidth / 2 + 'px';
         sun.style.top = pageY - sun.offsetHeight / 2 + 'px';
-        const distanciaX = pageX - 200;
+        const distanciaX = pageX - 60;
         const distanciaY = pageY - 200;
 
         var calculo =  Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
         const valorNormalizado = Number((200/Math.round(calculo)));
-        if(calculo >= 250){
+        if(calculo >= 300){
             body[0].style.opacity = valorNormalizado;
+            html[0].style.backgroundColor = "black";
         }else{
             body[0].style.opacity = 1;
+            html[0].style.backgroundColor = "white";
         }
     }
 

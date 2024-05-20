@@ -15,7 +15,7 @@ async function auth(req, res){
                 } else {
                     req.session.loggedin = true;
                     req.session.name = user[0].nombre_usuario;
-                    req.session.id = user[0].id_usuario;
+                    req.session.id_usuario = user[0].id_usuario;
                     req.session.rol = user[0].rol;
     
                     res.redirect('/');
@@ -32,7 +32,7 @@ async function auth(req, res){
 function logout(req, res){
     req.session.loggedin = false;
     req.session.name = '';
-    req.session.id = '';
+    req.session.id_usuario = '';
     req.session.rol = '';
 
     res.redirect('/');

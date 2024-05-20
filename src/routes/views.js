@@ -42,13 +42,9 @@ routesStudents.push(
 routesTeachers.push(
     {
         'method': 'get',
-        'path': '/estudiante/horario',
-        'function': viewController.horario
-    },
-    {
-        'method': 'get',
-        'path': '/docentes/cargar_notas',
-        'function': viewController.cargarEstudiantes
+        'path': '/docentes/cargar_notas/:id_materia',
+        'function': viewController.cargarEstudiantes,
+        'role': 2
     },
 );
 

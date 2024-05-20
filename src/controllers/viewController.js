@@ -26,9 +26,16 @@ async function horario(req, res){
     res.render('estudiantes/horario', {userName: req.session.name});
 }
 
+async function cargarEstudiantes (req, res){
+       nombresE = await dbConection.selectRaw('SELECT es.nombre, es.apellido, m.nombre, es.id_usuario, m.id_materia from academugod.registro_materias as rm inner join academugod.estudiantes as es on rm.id_estudiante = es.id_estudiante inner join academugod.materias as m on rm.id_materia = m.id_materia where m.id_materia = 7;');
+       console.log(nombresE);
+       res.render('docentes/cargar_notas', {userName: req.session.name});
+}
+
 module.exports = {
     dashboard,
     cargarN, 
     horario,
     regresarD,
+    cargarEstudiantes,
 }

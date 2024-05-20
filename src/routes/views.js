@@ -33,12 +33,7 @@ routesTeachers.push(
     {
         'method': 'get',
         'path': '/docentes/cargar_notas',
-        'function': viewController.cargarN
-    },
-    {
-        'method': 'get',
-        'path': '/docentes/dashboard',
-        'function': viewController.regresarD
+        'function': viewController.cargarEstudiantes
     },
 );
 
@@ -48,4 +43,4 @@ routes = routes.concat(
     routesAdmin,
 );
 
-module.exports = routes;
+module.exports = routes;    

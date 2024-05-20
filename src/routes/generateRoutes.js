@@ -49,7 +49,7 @@ routes.forEach(route => {
             router.get(route['path'], function(req,res,next){
                 if(req.session.loggedin != true && req.originalUrl != '/login' && req.originalUrl != '/logout'){
                     res.redirect('/login');
-                } else if(route['path'] != '/' && req.session.id != route['role']  && 0 != route['role']){
+                } else if(route['path'] != '/' && req.session.rol != route['role']  && 0 != route['role']){
                     res.redirect('/');
                 } else {
                     next();

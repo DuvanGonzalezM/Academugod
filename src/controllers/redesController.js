@@ -3,8 +3,9 @@ const dateFormat = require('handlebars-dateformat');
 
 async function getTemperaturas(req, res){
     await dbConection.selectRaw('SELECT t.* FROM temperaturas as t order by t.datetime desc limit 100').then((temperaturas) => {
-        temperaturas = formatedDateTemperature(temperaturas);
         var lastTemperature = temperaturas.shift();
+        temperaturas = formatedDateTemperature(temperaturas);
+        lastTemperature.datetime = dateFormat(lastTemperature.datetime, "DD/MM/YYYY HH:mm:ss");
         res.json({'data':temperaturas, 'last': lastTemperature});
     }).catch((error) => {
         res.json({'data':[], 'last': []});
@@ -24,7 +25,11 @@ async function sendTemperaturas(req, res) {
 
 function formatedDateTemperature(array) {
     var result = array.map((item) => {
-        return { ...item, datetime: dateFormat(item.datetime, "DD/MM/YYYY HH:mm:ss") }; // Modify only humedad to 75
+        return { ...item, 
+            datetime: dateFormat(item.datetime, "DD/MM/YYYY HH:mm:ss"),
+            temperatura: item.temperatura + ' \xB0C',
+            humedad: item.humedad + ' %'
+        };
     });
     return result;
 }

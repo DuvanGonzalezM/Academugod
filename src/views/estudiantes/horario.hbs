@@ -1,1 +1,53 @@
-<h1>Test</h1>
+<div class="container text-center">
+    <h1>Horario</h1>
+    <div id="horario"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('horario');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: "es",
+            themeSystem: 'bootstrap5',
+            initialView: 'dayGridWeek',
+            contentHeight: 400,
+            day: 'long',
+            views: {
+                dayGridWeek:{
+                    dayHeaderFormat: { weekday: 'long' },
+                    weekends: false,
+                    nowIndicator: true
+                }
+            },
+            events: {{{ horario }}},
+            eventContent: function(arg) {
+                let div = document.createElement('div');
+
+                let time = document.createElement('span');
+                time.innerHTML = arg.event.extendedProps.time;
+
+                let description = document.createElement('div');
+
+                let materia = document.createElement('b');
+                materia.innerHTML = arg.event.extendedProps.materia;
+
+                let profesor = document.createElement('b');
+                profesor.innerHTML = '<br>'+arg.event.extendedProps.profesor;
+
+                let salon = document.createElement('b');
+                salon.innerHTML = '<br>Salon: '+arg.event.extendedProps.salon;
+
+                description.appendChild(materia);
+                description.appendChild(profesor);
+                description.appendChild(salon);
+
+                div.appendChild(time);
+                div.appendChild(description);
+
+                let arrayOfDomNodes = [ div ]
+                return { domNodes: arrayOfDomNodes }
+            },
+        });
+        calendar.render();
+    });
+</script>

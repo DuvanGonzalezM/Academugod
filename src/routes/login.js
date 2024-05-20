@@ -6,17 +6,20 @@ routes.push(
     {
         'method': 'get',
         'path': '/login',
-        'function': loginController.login
+        'function': loginController.login,
+        'role': 0
     },
     {
         'method': 'post',
         'path': '/login',
-        'function': loginController.auth
+        'function': loginController.auth,
+        'role': 0
     },
     {
         'method': 'get',
         'path': '/logout',
-        'function': loginController.logout
+        'function': loginController.logout,
+        'role': 0
     },
 );
 

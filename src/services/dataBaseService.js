@@ -27,6 +27,16 @@ function selectRaw(query, arg){
     return result; 
 }
 
+function insertRaw(query){
+    
+    result = sequelize.query(query, {
+        type: QueryTypes.INSERT,
+    });
+
+    return result; 
+}
+
 module.exports = {
     selectRaw,
+    insertRaw,
 }

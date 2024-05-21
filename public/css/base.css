@@ -76,4 +76,16 @@ a.acade-card {
     transform: scale(1.2);
     background-color: #93BC35;
     transition-duration: 1s;
-  }
+}
+.acade-table thead th{
+    text-align: center !important;
+}
+.acade-table tbody td{
+    text-align: center !important;
+}
+.acade-table .dt-column-title{
+    text-align: center !important;
+}
+.acade-table .dt-type-numeric{
+    text-align: center !important;
+}

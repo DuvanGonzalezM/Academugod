@@ -66,26 +66,44 @@ routesAdmin.push(
     {
         'method': 'get',
         'path': '/admistrativo/estudiantes',
-        'function': adminController.estudiantes
+        'function': adminController.estudiantes,
+        'role': 3
     },
 
     {
         'method': 'get',
-        'path': '/admistrativo/Registrar',
-        'function': adminController.Registrar
+        'path': '/admistrativo/registrar/estudiante',
+        'function': adminController.registrarEstudiante,
+        'role': 3
     },
 
     {
         'method': 'get',
-        'path': '/admistrativo/Consultar',
-        'function': adminController.Consultar
+        'path': '/admistrativo/consultar/estudiantes',
+        'function': adminController.consultarEstudiante,
+        'role': 3
+    },
+    {
+        'method': 'get',
+        'path': '/admistrativo/profesores',
+        'function': adminController.profesores,
+        'role': 3
     },
 
     {
         'method': 'get',
-        'path': '/admistrativo/atras',
-        'function': adminController.atras1
+        'path': '/admistrativo/registrar/profesores',
+        'function': adminController.registrarProfesores,
+        'role': 3
     },
+
+    {
+        'method': 'get',
+        'path': '/admistrativo/consultar/profesores',
+        'function': adminController.consultarProfesores,
+        'role': 3
+    },
+
 );
 
 routes = routes.concat(

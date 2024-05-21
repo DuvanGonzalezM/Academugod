@@ -90,7 +90,6 @@
       <th>Primer corte</th>
       <th>Segundo corte</th>
       <th>Tercer corte</th>
-      <th>Promedio</th>
       <th></th>
     </tr>
   </thead>
@@ -99,10 +98,9 @@
     <tr>
       <td>{{numero_estudiante}}</td>
       <td>{{nombre}} {{apellido}}</td> <!-- Valor que debe ser arrastrado por BD -->
-      <td><input type="text" name="primer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
-      <td><input type="text" name="segundo_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
-      <td><input type="text" name="tercer_corte_1" /></td> <!-- Valor que debe ser enviado a BD -->
-      <td class="promedio bg-light"><input type="text" name="promedio_1"></td> <!-- Valor que debe ser calculado por js -->
+      <td>{{#if nota_c1}} {{nota_c1}}{{/if}}{{#unless nota_c1}}<input type="text" name="primer_corte_1" />{{/unless}}</td> <!-- Valor que debe ser enviado a BD -->
+      <td>{{#if nota_c2}} {{nota_c2}}{{/if}}{{#unless nota_c2}}<input type="text" name="segundo_corte_1" /></td>{{/unless}} <!-- Valor que debe ser enviado a BD -->
+      <td>{{#if nota_c3}} {{nota_c3}}{{/if}}{{#unless nota_c3}}<input type="text" name="tercer_corte_1" /></td>{{/unless}} <!-- Valor que debe ser enviado a BD -->
       <td>
         <button type="button" class="btn btn-danger">Limpiar</button>
       </td>

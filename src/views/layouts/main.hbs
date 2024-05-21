@@ -17,7 +17,9 @@
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
         <script type="module" src="/assets/js/main.js"></script>
         <header>
-            <img class="logo-header" src="/assets/img/logo.png" alt="Icono">
+            <a href="/">
+                <img class="logo-header" src="/assets/img/logo.png" alt="Icono">
+            </a>
             <h1 class="text-header">Bienvenido, {{#if userName}} {{userName}} {{/if}}</h1>
             <a href="/logout" class="btn btn-danger logout">Salir</a>
         </header>

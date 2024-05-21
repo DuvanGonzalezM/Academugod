@@ -56,15 +56,62 @@ async function horario(req, res){
     });
 }
 
-async function cargarEstudiantes (req, res){
-    console.log();
-    nombresE = await dbConection.selectRaw('SELECT es.nombre, es.apellido, m.nombre as nombre_materia, es.numero_estudiante, m.id_materia from registro_materias as rm inner join estudiantes as es on rm.id_estudiante = es.id_estudiante inner join horario as h on h.id_materia = rm.id_materia inner join materias as m on h.id_materia = m.id_materia where m.id_materia = ?', [req.params.id_materia]);
-    res.render('docentes/cargar_notas', {userName: req.session.name, estudiantes: nombresE});
+async function cargarNotas(req, res){
+    estudiantes = await getEstudiantesByMateriaID(req.params.id_materia).then((estudiantes) => {
+        return estudiantes;
+    }).catch((error) => {
+       return [];
+    });
+    res.render('docentes/cargar_notas', {userName: req.session.name, estudiantes: estudiantes});
+}
+
+async function consultarNotas(req, res){
+    materia = await getMateriasMateriaID(req.params.id_materia).then((materia) => {
+        return materia;
+    }).catch((error) => {
+       return "";
+    });
+    estudiantes = await getEstudiantesByMateriaID(req.params.id_materia).then((estudiantes) => {
+        return estudiantes;
+    }).catch((error) => {
+       return [];
+    });
+    res.render('docentes/consultar_notas', {userName: req.session.name, estudiantes: estudiantes, materia: materia});
+}
+
+
+async function consultarMaterias (req, res){
+    baseUrl = req.params.accion == 'cargar' ? '/docentes/cargar/notas/' : '/docentes/consultar/estudiantes/';
+    materias = await getMateriasByDocenteID(req.session.id_usuario).then((materias) => {
+        return materias;
+    }).catch((error) => {
+       return [];
+    });;
+    res.render('docentes/consultar_materias', {userName: req.session.name, materias: materias, baseUrl: baseUrl}); 
+}
+
+function getMateriasByDocenteID(idDocente){
+    materias =  dbConection.selectRaw('SELECT distinct m.nombre , m.id_materia from materias as m join horario as h on m.id_materia = h.id_materia join profesores as p on h.id_profesor = p.id_profesor where p.id_usuario = ?', [idDocente])
+    return materias;
+}
+
+function getMateriasMateriaID(idMateria){
+    materias =  dbConection.selectRaw('SELECT distinct m.* from materias as m where m.id_materia = ? limit 1', [idMateria])
+    return materias;
+}
+
+function getEstudiantesByMateriaID(idMateria){
+  
+    estudiantes = dbConection.selectRaw('SELECT distinct es.nombre, es.apellido, es.numero_estudiante, c.nota_c1, c.nota_c2, c.nota_c3, (c.nota_c1+c.nota_c2+c.nota_c3)/3 as promedio FROM calificaciones as c join registro_materias as rm on rm.id_registro = c.id_materia join horario as h on rm.id_materia = h.id_horario join estudiantes as es on rm.id_estudiante = es.id_estudiante where h.id_materia = ?', [idMateria]);
+
+    return estudiantes;
 }
 
 module.exports = {
     dashboard,
     cargarN, 
     horario,
-    cargarEstudiantes,
+    cargarNotas,
+    consultarNotas,
+    consultarMaterias,
 }

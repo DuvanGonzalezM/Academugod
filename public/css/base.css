@@ -43,7 +43,7 @@ footer {
 }
 
 .content {
-    margin: 2rem;
+    margin: 2rem auto !important;
     padding: 2rem;
     box-sizing: border-box;
     background-color: #f2f2f2;
@@ -72,3 +72,8 @@ a.acade-card {
     text-decoration: none;
     color: inherit;
 }
+.acade-card:hover{
+    transform: scale(1.2);
+    background-color: #93BC35;
+    transition-duration: 1s;
+  }

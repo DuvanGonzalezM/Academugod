@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-const { engine } = require('express-handlebars');
 const session = require('express-session');
+const { engine } = require('express-handlebars');
+const dateFormat = require('handlebars-dateformat');
+const { equal } = require('handlebars-helpers'); // Import the eq helper
 const bodyParser = require('body-parser');
 const Routes = require('./routes/generateRoutes');
 
@@ -12,7 +14,11 @@ app.set('views', __dirname + '/views');
 app.use('/assets', express.static('public'));
 
 app.engine('.hbs', engine({
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: {
+        dateFormat,
+        equal,
+    },
 }));
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({

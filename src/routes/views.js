@@ -1,4 +1,5 @@
 const viewController = require('../controllers/viewController');
+const redesController = require('../controllers/redesController');
 
 var routes = [];
 var routesStudents = [];
@@ -9,7 +10,8 @@ routes.push(
     {
         'method': 'get',
         'path': '/',
-        'function': viewController.dashboard
+        'function': viewController.dashboard,
+        'role': 0
     },
 );
 
@@ -18,8 +20,21 @@ routes.push(
 routesStudents.push(
     {
         'method': 'get',
-        'path': '/estudiante/horario/:id_materia',
-        'function': viewController.horario
+        'path': '/estudiante/horario',
+        'function': viewController.horario,
+        'role': 1
+    },
+    {
+        'method': 'get',
+        'path': '/temperaturas',
+        'function': redesController.getTemperaturas,
+        'role': 4
+    },
+    {
+        'method': 'post',
+        'path': '/temperaturas',
+        'function': redesController.sendTemperaturas,
+        'role': 4
     },
 );
 
@@ -27,13 +42,9 @@ routesStudents.push(
 routesTeachers.push(
     {
         'method': 'get',
-        'path': '/estudiante/horario',
-        'function': viewController.horario
-    },
-    {
-        'method': 'get',
-        'path': '/docentes/cargar_notas',
-        'function': viewController.cargarEstudiantes
+        'path': '/docentes/cargar_notas/:id_materia',
+        'function': viewController.cargarEstudiantes,
+        'role': 2
     },
 );
 

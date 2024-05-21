@@ -66,7 +66,7 @@ async function cargarNotas(req, res){
 }
 
 async function consultarNotas(req, res){
-    materia = await getMateriasMateriaID(req.session.id_usuario).then((materia) => {
+    materia = await getMateriasMateriaID(req.params.id_materia).then((materia) => {
         return materia;
     }).catch((error) => {
        return "";

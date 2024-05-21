@@ -86,13 +86,13 @@ async function consultarMaterias (req, res){
 }
 
 function getMateriasByDocenteID(idDocente){
-    materias =  dbConection.selectRaw('SELECT m.nombre , m.id_materia from materias as m join horario as h on m.id_materia = h.id_materia join profesores as p on h.id_profesor = p.id_profesor where p.id_usuario = ?', [idDocente])
+    materias =  dbConection.selectRaw('SELECT DISTINCT m.nombre , m.id_materia from materias as m join horario as h on m.id_materia = h.id_materia join profesores as p on h.id_profesor = p.id_profesor where p.id_usuario = ?', [idDocente])
     return materias;
 }
 
 function getEstudiantesByMateriaID(idMateria){
   
-    estudiantes = dbConection.selectRaw('SELECT es.nombre, es.apellido, m.nombre as nombre_materia, es.numero_estudiante, m.id_materia from registro_materias as rm inner join estudiantes as es on rm.id_estudiante = es.id_estudiante inner join horario as h on h.id_materia = rm.id_materia inner join materias as m on h.id_materia = m.id_materia where m.id_materia = ?', [idMateria]);
+    estudiantes = dbConection.selectRaw('SELECT DISTINCT es.nombre, es.apellido, m.nombre as nombre_materia, es.numero_estudiante, m.id_materia from registro_materias as rm inner join estudiantes as es on rm.id_estudiante = es.id_estudiante inner join horario as h on h.id_materia = rm.id_materia inner join materias as m on h.id_materia = m.id_materia where m.id_materia = ?', [idMateria]);
 
     return estudiantes;
 }

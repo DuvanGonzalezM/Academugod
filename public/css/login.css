@@ -16,7 +16,7 @@
     display: grid;
 }
 
-.form-login>button {
+.form-login button {
     width: 50%;
     margin: auto;
     background-color: #93bc35;

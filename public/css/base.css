@@ -1,3 +1,6 @@
+:is(h1, h2, h3, h4, h5, h6) {
+    font-weight: bold;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -40,7 +43,7 @@ footer {
 }
 
 .content {
-    margin: 2rem;
+    margin: 2rem auto !important;
     padding: 2rem;
     box-sizing: border-box;
     background-color: #f2f2f2;
@@ -56,3 +59,21 @@ footer {
     font-weight: bold;
     color: black;
 }
+.acade-card{
+    border-width: 2px;
+    background-color: #d9d9d9;
+    border-color: #93BC35;
+    padding: 1.5rem 3rem;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 1rem;
+}
+a.acade-card {
+    text-decoration: none;
+    color: inherit;
+}
+.acade-card:hover{
+    transform: scale(1.2);
+    background-color: #93BC35;
+    transition-duration: 1s;
+  }

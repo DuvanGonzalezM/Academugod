@@ -7,14 +7,15 @@ function login(req, res){
 
 async function auth(req, res){
     const data = req.body;
-    user = await dbConection.selectRaw('SELECT * FROM usuarios WHERE nombre_usuario = ?', [data.username]).then((user) => {
+    await dbConection.selectRaw('SELECT * FROM usuarios WHERE nombre_usuario = ?', [data.username]).then((user) => {
         if (user.length > 0) {
             bcrypt.compare(data.password, user[0].password, (err, isMatch) => {
                 if (!isMatch) {
                     res.render('login/index', { layout: 'login.hbs', error: 'La constraseña es incorrecta!'})                    
                 } else {
                     req.session.loggedin = true;
-                    req.session.name = data.username;
+                    req.session.name = user[0].nombre_usuario;
+                    req.session.id_usuario = user[0].id_usuario;
                     req.session.rol = user[0].rol;
     
                     res.redirect('/');
@@ -31,6 +32,7 @@ async function auth(req, res){
 function logout(req, res){
     req.session.loggedin = false;
     req.session.name = '';
+    req.session.id_usuario = '';
     req.session.rol = '';
 
     res.redirect('/');

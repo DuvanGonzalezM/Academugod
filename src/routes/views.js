@@ -18,7 +18,7 @@ routes.push(
 routesStudents.push(
     {
         'method': 'get',
-        'path': '/estudiante/horario',
+        'path': '/estudiante/horario/:id_materia',
         'function': viewController.horario
     },
 );

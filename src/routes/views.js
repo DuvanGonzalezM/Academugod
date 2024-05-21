@@ -1,4 +1,5 @@
 const viewController = require('../controllers/viewController');
+const adminController = require('../controllers/adminController');
 const redesController = require('../controllers/redesController');
 
 var routes = [];
@@ -58,6 +59,51 @@ routesTeachers.push(
         'function': viewController.consultarNotas,
         'role': 2
     },
+);
+
+// Rutas Administrativos
+routesAdmin.push(
+    {
+        'method': 'get',
+        'path': '/admistrativo/estudiantes',
+        'function': adminController.estudiantes,
+        'role': 3
+    },
+
+    {
+        'method': 'get',
+        'path': '/admistrativo/registrar/estudiante',
+        'function': adminController.registrarEstudiante,
+        'role': 3
+    },
+
+    {
+        'method': 'get',
+        'path': '/admistrativo/consultar/estudiantes',
+        'function': adminController.consultarEstudiante,
+        'role': 3
+    },
+    {
+        'method': 'get',
+        'path': '/admistrativo/profesores',
+        'function': adminController.profesores,
+        'role': 3
+    },
+
+    {
+        'method': 'get',
+        'path': '/admistrativo/registrar/profesores',
+        'function': adminController.registrarProfesores,
+        'role': 3
+    },
+
+    {
+        'method': 'get',
+        'path': '/admistrativo/consultar/profesores',
+        'function': adminController.consultarProfesores,
+        'role': 3
+    },
+
 );
 
 routes = routes.concat(

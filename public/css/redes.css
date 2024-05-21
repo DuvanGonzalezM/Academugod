@@ -34,12 +34,3 @@
     padding: 0 0 0 .5rem;
     top: -.8rem;
 }
-.acade-table thead th{
-    text-align: center !important;
-}
-.acade-table .dt-column-title{
-    text-align: center !important;
-}
-.acade-table .dt-type-numeric{
-    text-align: center !important;
-}

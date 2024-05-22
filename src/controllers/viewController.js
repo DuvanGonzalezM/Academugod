@@ -86,17 +86,17 @@ async function consultarMaterias (req, res){
         return materias;
     }).catch((error) => {
        return [];
-    });;
+    });
     res.render('docentes/consultar_materias', {userName: req.session.name, materias: materias, baseUrl: baseUrl}); 
 }
 
 function getMateriasByDocenteID(idDocente){
-    materias =  dbConection.selectRaw('SELECT distinct m.nombre , m.id_materia from materias as m join horario as h on m.id_materia = h.id_materia join profesores as p on h.id_profesor = p.id_profesor where p.id_usuario = ?', [idDocente])
+    materias =  dbConection.selectRaw('SELECT distinct m.nombre , m.id_materia from materias as m join horario as h on m.id_materia = h.id_materia join profesores as p on h.id_profesor = p.id_profesor where p.id_usuario = ?', [idDocente]);
     return materias;
 }
 
 function getMateriasMateriaID(idMateria){
-    materias =  dbConection.selectRaw('SELECT distinct m.* from materias as m where m.id_materia = ? limit 1', [idMateria])
+    materias =  dbConection.selectRaw('SELECT distinct m.* from materias as m where m.id_materia = ? limit 1', [idMateria]);
     return materias;
 }
 
@@ -107,6 +107,14 @@ function getEstudiantesByMateriaID(idMateria){
     return estudiantes;
 }
 
+async function consultarNotasEstudiantes(req, res){
+    notas = await dbConection.selectRaw('SELECT distinct m.nombre, c.nota_c1, c.nota_c2, c.nota_c3, (c.nota_c1+c.nota_c2+c.nota_c3)/3 as promedio FROM calificaciones as c join registro_materias as rm on rm.id_registro = c.id_materia join estudiantes as es on rm.id_estudiante = es.id_estudiante join horario as h on rm.id_materia = h.id_horario join materias as m on h.id_materia = m.id_materia where es.id_usuario = ?', [req.session.id_usuario]).then((notas) => {
+        res.render('estudiantes/consultar_notas', {userName: req.session.name, notas: notas}); 
+    }).catch((error) => {
+        res.render('estudiantes/consultar_notas', {userName: req.session.name, notas: []}); 
+    });
+}
+
 module.exports = {
     dashboard,
     cargarN, 
@@ -114,4 +122,5 @@ module.exports = {
     cargarNotas,
     consultarNotas,
     consultarMaterias,
+    consultarNotasEstudiantes,
 }

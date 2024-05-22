@@ -27,8 +27,14 @@ routesStudents.push(
     },
     {
         'method': 'get',
+        'path': '/estudiantes/notas',
+        'function': viewController.consultarNotasEstudiantes,
+        'role': 1
+    },
+    {
+        'method': 'post',
         'path': '/temperaturas',
-        'function': redesController.getTemperaturas,
+        'function': redesController.sendTemperaturas,
         'role': 4
     },
     {

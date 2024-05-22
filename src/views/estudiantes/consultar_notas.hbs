@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -106,4 +106,31 @@
         });
     </script>
 </body>
-</html>
+</html> --}}
+<div class="container text-center">
+    <h4 class="mt-5">Notas</h4>
+    <div class="row">
+        <table id="materias" class="table table-striped table-bordered acade-table" style="width:100%" border="3">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Primer corte</th>
+                    <th>Segundo corte</th>
+                    <th>Tercer corte</th>
+                    <th>Definitiva</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each notas}}
+                <tr>
+                    <td>{{nombre}}</td>
+                    <td>{{#if nota_c1}} {{nota_c1}} {{/if}} {{#unless nota_c1}} 0 {{/unless}}</td>
+                    <td>{{#if nota_c2}} {{nota_c2}} {{/if}} {{#unless nota_c2}} 0 {{/unless}}</td>
+                    <td>{{#if nota_c3}} {{nota_c3}} {{/if}} {{#unless nota_c3}} 0 {{/unless}}</td>
+                    <td>{{#if promedio}} {{promedio}} {{/if}} {{#unless promedio}} 0 {{/unless}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

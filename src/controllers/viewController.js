@@ -28,9 +28,6 @@ async function dashboard(req, res){
     }
 }
 
-function cargarN(req , res){
-    res.render('docentes/cargar_notas');
-}
 
 async function horario(req, res){
     var days = ['DOMINGO', 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO'];
@@ -109,7 +106,6 @@ function getEstudiantesByMateriaID(idMateria){
 
 module.exports = {
     dashboard,
-    cargarN, 
     horario,
     cargarNotas,
     consultarNotas,

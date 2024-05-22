@@ -1,0 +1,36 @@
+#sun{
+    width: 7%;
+    position: absolute;
+    left: 8%;
+    top: 30%;
+    margin: -3% 0 0 -3%;
+    z-index: 100000 !important;
+}
+#panel{
+    width: 15%;
+    position: absolute;
+    left: -2.5%;
+    top: 14%;
+    transform: rotate(150deg);
+    margin: -1% 0 0 -1%;
+}
+.units { 
+    font-size: 1.2rem;
+    top: -1rem;
+    font-weight: bold;
+}
+.temperature i{
+    font-size: 3.0rem; 
+    color: red;
+}
+.humidity i{ 
+    font-size: 3.0rem; 
+    color: blue;
+}
+.dht-labels{ 
+    font-size: 1.5rem; 
+    vertical-align:middle; 
+    position: relative;
+    padding: 0 0 0 .5rem;
+    top: -.8rem;
+}

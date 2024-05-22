@@ -1,0 +1,28 @@
+.acade-est-dash i{
+    font-size: 350%;
+}
+.acade-est-dash h4{
+    font-weight: bold;
+    padding-top: 3%;
+}
+#horario .fc-dayGridWeek-view{
+    background-color: white;
+}
+#horario a{
+    color: black;
+    text-decoration: none;
+}
+.acade-cal-event{
+    background-color: #d9d9d9;
+    border-color: #93BC35;
+    text-align: center;
+    padding: 5%;
+    margin: 3% auto !important;
+    width: 90%;
+}
+.acade-cal-event div{
+    color: black !important;
+}
+.acade-cal-event span{
+    font-size: 0.7rem;
+}

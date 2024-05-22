@@ -1,17 +1,24 @@
+require('dotenv').config();
 const express = require('express');
-const { engine } = require('express-handlebars');
-const myconnection = require('express-myconnection');
-const mysql = require('mysql2');
 const session = require('express-session');
+const { engine } = require('express-handlebars');
+const dateFormat = require('handlebars-dateformat');
+const { equal } = require('handlebars-helpers'); // Import the eq helper
 const bodyParser = require('body-parser');
+const Routes = require('./routes/generateRoutes');
 
 const app = express();
 
 app.set('port', 4000);
 app.set('views', __dirname + '/views');
+app.use('/assets', express.static('public'));
 
 app.engine('.hbs', engine({
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: {
+        dateFormat,
+        equal,
+    },
 }));
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({
@@ -20,10 +27,15 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.listen(app.get('port'), () => {
     console.log(app.get('port'));
 });
 
-app.get('/', (request, response) => {
-    response.render('home');
-});
+app.use('/', Routes);
+// app.use('/', viewsRoutes);

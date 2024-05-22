@@ -1,0 +1,91 @@
+:is(h1, h2, h3, h4, h5, h6) {
+    font-weight: bold;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #273B69;
+    color: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer {
+    background-color: #d9d9d9;
+    color: white;
+    padding: 0.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.logo-header {
+    width: 230px;
+}
+
+.text-header{
+    margin-left: 26%;
+    font-size: 1.5rem;
+}
+
+.logout{
+    margin-left: 35%;
+}
+
+.content {
+    margin: 2rem auto !important;
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+}
+
+.logo-footer {
+    width: 150px;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: black;
+}
+.acade-card{
+    border-width: 2px;
+    background-color: #d9d9d9;
+    border-color: #93BC35;
+    padding: 1.5rem 3rem;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 1rem;
+}
+a.acade-card {
+    text-decoration: none;
+    color: inherit;
+}
+.acade-card:hover{
+    transform: scale(1.2);
+    background-color: #93BC35;
+    transition-duration: 1s;
+}
+.acade-table thead th{
+    text-align: center !important;
+}
+.acade-table tbody td{
+    text-align: center !important;
+}
+.acade-table .dt-column-title{
+    text-align: center !important;
+}
+.acade-table .dt-type-numeric{
+    text-align: center !important;
+}

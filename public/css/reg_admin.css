@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Ocupar toda la altura de la pantalla  ahi quedo bien no? :D   */
+}
+.DP {
+     width: 100%;
+     padding: 2rem;
+     box-sizing: border-box;
+     background-color: white;
+     border: 0px solid #ddd;
+     margin-top: 2rem;
+     display: flex;
+     justify-content: space-around;/*contenedor ed la caja principal*/
+}
+.card {
+           border-width: 3px;
+           background-color: #f2f2f2;
+           border-color: #20c997;
+           position: relative;
+           padding: 5px 45px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 15px;
+           margin: 15px 15px;
+           cursor: pointer;
+           border-radius: 35px;
+}

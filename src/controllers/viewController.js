@@ -66,7 +66,7 @@ async function cargarNotas(req, res){
 }
 
 async function consultarNotas(req, res){
-    materia = await getMateriasMateriaID(req.params.id_materia).then((materia) => {
+    materia = await getMateriasByMateriaID(req.params.id_materia).then((materia) => {
         return materia;
     }).catch((error) => {
        return "";
@@ -90,12 +90,32 @@ async function consultarMaterias (req, res){
     res.render('docentes/consultar_materias', {userName: req.session.name, materias: materias, baseUrl: baseUrl}); 
 }
 
+async function registrarMaterias (req,res){
+     await dbConection.selectRaw('SELECT h.id_horario, m.nombre AS nombre_materia, h.dia_semana, h.hora_inicio, h.hora_fin, p.nombre AS nombre_profesor, p.apellido, h.aula FROM academugod.horario AS h INNER JOIN academugod.materias AS m ON h.id_materia = m.id_materia INNER JOIN academugod.profesores AS p ON h.id_profesor = p.id_profesor ').then((materias) => {
+        res.render('estudiantes/registrar_materias', {userName: req.session.name, materias});
+    }).catch((error) => {
+        res.render('estudiantes/registrar_materias', {userName: req.session.name, materias: []});
+    });
+}
+
+async function cargarMaterias (req,res){
+    var data = req.body;
+    delete data['materias_length'];
+    var values = '';
+    values = Object.keys(data).forEach((item, value) => {
+        return '(' + req.session.id_usuario + ',' + value + ')'; 
+    } );
+    console.log(req.session.id_usuario,values);
+    await dbConection.insertRaw('INSERT INTO registro_materias ( id_estudiante, id_materia ) VALUES ('+req.session.id_usuario+','+data["cb_8"] +' )');
+
+}
+
 function getMateriasByDocenteID(idDocente){
     materias =  dbConection.selectRaw('SELECT distinct m.nombre , m.id_materia from materias as m join horario as h on m.id_materia = h.id_materia join profesores as p on h.id_profesor = p.id_profesor where p.id_usuario = ?', [idDocente])
     return materias;
 }
 
-function getMateriasMateriaID(idMateria){
+function getMateriasByMateriaID(idMateria){
     materias =  dbConection.selectRaw('SELECT distinct m.* from materias as m where m.id_materia = ? limit 1', [idMateria])
     return materias;
 }
@@ -114,4 +134,6 @@ module.exports = {
     cargarNotas,
     consultarNotas,
     consultarMaterias,
+    registrarMaterias,
+    cargarMaterias,
 }

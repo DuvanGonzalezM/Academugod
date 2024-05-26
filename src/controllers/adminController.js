@@ -26,7 +26,6 @@ async function consultarProfesores(req, res){
 async function insertarEstudiante(req, res){
     console.log(req.body);
 //   const { identification, name, apellido} = req.body;
-
 //   await dbConection.selectRaw('INSERT INTO estudiantes (numero_estudiante, nombre, apellido) VALUES (?, ?, ?)', [numero_estudiante, nombre, apellido]) // use form data in query
 //     .then((estudiantes) => {
 //       res.render('administrativos/reg_est', {userName: req.session.name, estudiantes: estudiantes});

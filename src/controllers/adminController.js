@@ -24,15 +24,16 @@ async function consultarProfesores(req, res){
     });
 }
 async function insertarEstudiante(req, res){
-  const { identification, name, apellido } = req.body; // extract form data
+    console.log(req.body);
+//   const { identification, name, apellido} = req.body;
 
-  await dbConection.selectRaw('INSERT INTO estudiantes (numero_estudiante, nombre, apellido) VALUES (?, ?, ?)', [numero_estudiante, nombre, apellido]) // use form data in query
-    .then((estudiantes) => {
-      res.render('administrativos/reg_est', {userName: req.session.name, estudiantes: estudiantes});
-    })
-    .catch((error) => {
-      res.render('administrativos/reg_est', {userName: req.session.name, estudiantes: []});
-    });
+//   await dbConection.selectRaw('INSERT INTO estudiantes (numero_estudiante, nombre, apellido) VALUES (?, ?, ?)', [numero_estudiante, nombre, apellido]) // use form data in query
+//     .then((estudiantes) => {
+//       res.render('administrativos/reg_est', {userName: req.session.name, estudiantes: estudiantes});
+//     })
+//     .catch((error) => {
+//       res.render('administrativos/reg_est', {userName: req.session.name, estudiantes: []});
+//     });
 }
 function profesores(req, res){
     res.render('administrativos/ed_pro', {userName: req.session.name});

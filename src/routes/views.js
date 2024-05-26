@@ -78,6 +78,13 @@ routesAdmin.push(
     },
 
     {
+        'method': 'post',
+        'path': '/admistrativo/registrar/estudiante',
+        'function': adminController.insertarEstudiante,
+        'role': 3
+    },
+
+    {
         'method': 'get',
         'path': '/admistrativo/consultar/estudiantes',
         'function': adminController.consultarEstudiante,

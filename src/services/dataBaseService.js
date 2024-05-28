@@ -36,7 +36,27 @@ function insertRaw(query){
     return result; 
 }
 
+function updateRaw(query){
+    
+    result = sequelize.query(query, {
+        type: QueryTypes.UPDATE,
+    });
+
+    return result; 
+}
+
+function deleteRaw(query){
+    
+    result = sequelize.query(query, {
+        type: QueryTypes.DELETE,
+    });
+
+    return result; 
+}
+
 module.exports = {
     selectRaw,
     insertRaw,
+    updateRaw,
+    deleteRaw,
 }

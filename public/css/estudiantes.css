@@ -5,6 +5,9 @@
     font-weight: bold;
     padding-top: 3%;
 }
+#horario{
+    margin-top: 2rem;
+}
 #horario .fc-dayGridWeek-view{
     background-color: white;
 }
@@ -25,4 +28,24 @@
 }
 .acade-cal-event span{
     font-size: 0.7rem;
+}
+
+@media print {
+    #print{
+        padding-top: 5%;
+    }
+    #print table{
+        width: 100% !important;
+    }
+    #print th, #print td{
+        border: solid 0.1rem !important;
+    }
+    .fc-daygrid-day{
+        width: 20% !important;
+        font-size: 60% !important;
+    }
+    .fc-col-header-cell {
+        width: 20% !important;
+        text-align: center
+    }
 }

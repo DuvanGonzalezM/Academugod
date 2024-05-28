@@ -21,10 +21,31 @@
 					<label for="apellido">Apellido</label>
 					<input value="{{estudiante.apellido}}"name="apellido" type="text" class="form-control" id="apellido" required>
 				</div>
-				<button type="submit" class="btn btn-success mt-2">
-					<i class="bi bi-upload"></i>
+				<button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#editarEstudiante">
 					Editar
+					<i class="bi bi-upload"></i>
 				</button>
+
+				<div class="modal fade" id="editarEstudiante" tabindex="-1" aria-labelledby="editarEstudianteLabel"
+					aria-hidden="true">
+					<div class="modal-dialog ">
+						<div class="modal-content acade-card">
+							<div class="modal-header text-center justify-content-center">
+								<h5 class="acade-modal-title" id="editarEstudianteLabel">¿Deseas editar el estudiante?</h5>
+							</div>
+							<div class="modal-footer text-center justify-content-center">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+									No
+									<i class="bi bi-x-lg"></i>
+								</button>
+								<button type="submit" class="btn btn-success">
+									Si
+									<i class="bi bi-upload"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				{{#if error }}
 					<div class="error-form">
 						{{error}}

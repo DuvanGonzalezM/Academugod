@@ -77,6 +77,10 @@ a.acade-card {
     background-color: #93BC35;
     transition-duration: 1s;
 }
+.modal-content.acade-card:hover{
+    transform: scale(1);
+    background-color: #d9d9d9;
+}
 .acade-table thead th{
     text-align: center !important;
 }
@@ -95,4 +99,9 @@ a.acade-card {
 .printBtn{
     float: right;
     padding: 0.5rem;
+}
+.acade-modal-title {
+    color: black;
+    font-size: 30px;
+    
 }

@@ -117,6 +117,26 @@ routesAdmin.push(
         'function': adminController.consultarProfesores,
         'role': 3
     },
+    {
+        'method': 'post',
+        'path': '/admistrativo/actualizar/profesores',
+        'function': adminController.updateprofesor,
+        'role': 3
+    },
+
+    {
+        'method': 'get',
+        'path': '/admistrativo/editarestudiante/:id_estudiante',
+        'function': adminController.editarEstudiante,
+        'role': 3
+    },
+
+    {
+        'method': 'post',
+        'path': '/admistrativo/editarestudiante/:id_estudiante',
+        'function': adminController.updateestudiante,
+        'role': 3
+    },
 
 );
 

@@ -1,4 +1,4 @@
-<title>Admin: Cansultar</title>
+<title>Admin: Consultar</title>
 <table id="consultarEstudiantes" class="table table-striped table-bordered mt-2 acade-table" style="width:100%" border="3">
   <thead>
     <tr>
@@ -15,8 +15,8 @@
       <td>{{nombre}}</td>
       <td>{{apellido}}</td>
       <td>
-        <button type="button" class="btn btn-primary">Editar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <a href="/admistrativo/editarestudiante/{{id_estudiante}}"><i class="bi bi-eye"></i></a>
+        <a href="/admistrativo/editarestudiante" type="button" class="btn btn-primary">Editar</a>
       </td>
     </tr>
     {{/each}}
@@ -28,9 +28,6 @@
   <i class="bi bi-arrow-left-circle-fill"></i> Atrás</a>
 </div>
 <div >
-  <div class="botones-container">
-        <button id="btnConsultar horario">
-            <img src="<i class="bi bi-calendar-week"></i>" alt="Cosultar horario" style="height: 20px; vertical-align: middle;"> Consultar horario
-        </button>
+
 </div>
 </div>

@@ -3,17 +3,6 @@
 		<i class="bi bi-arrow-left"></i>
 		Atrás
 	</a>
-
-	<style>
-		.modal-title {
-			color: black;
-			font-size: 30px;
-			
-		}
-
-		
-	</style>
-
 	<div class="row justify-content-center">
 		<div class="col-12">
 			<h1>Registro de Estudiantes</h1>
@@ -33,31 +22,26 @@
 						<input name="apellido" type="text" class="form-control" id="apellido" required>
 					</div>
 
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						
+					<button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#registrarEstudiante">
 						Registrar
-
+						<i class="bi bi-upload"></i>
 					</button>
 
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+					<div class="modal fade" id="registrarEstudiante" tabindex="-1" aria-labelledby="registrarEstudianteLabel"
 						aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel" >Deseas Registrar </h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
+						<div class="modal-dialog ">
+							<div class="modal-content acade-card">
+								<div class="modal-header text-center justify-content-center">
+									<h5 class="acade-modal-title" id="registrarEstudianteLabel">¿Deseas registrar el estudiante?</h5>
 								</div>
-								<div class="modal-body">
-									...
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary"
-										data-bs-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-success mt-2">
+								<div class="modal-footer text-center justify-content-center">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+										No
+										<i class="bi bi-x-lg"></i>
+									</button>
+									<button type="submit" class="btn btn-success">
+										Si
 										<i class="bi bi-upload"></i>
-										Yes
 									</button>
 								</div>
 							</div>

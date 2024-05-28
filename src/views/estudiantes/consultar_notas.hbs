@@ -3,10 +3,31 @@
         <i class="bi bi-arrow-left"></i>
         Atrás
     </a>
-    <button class="acade-card printBtn" onclick="printdiv('container_notas')">
+    <button type="button" class="acade-card printBtn" data-bs-toggle="modal" data-bs-target="#printNotas">
         <i class="bi bi-printer"></i>
         Imprimir
     </button>
+
+    <div class="modal fade" id="printNotas" tabindex="-1" aria-labelledby="printNotasLabel"
+        aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content acade-card">
+                <div class="modal-header text-center justify-content-center">
+                    <h5 class="acade-modal-title" id="printNotasLabel">¿Desea imprimir las notas {{userName}}?</h5>
+                </div>
+                <div class="modal-footer text-center justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        No
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                    <button onclick="printdiv('container_notas')" class="btn btn-success">
+                        Si
+                        <i class="bi bi-printer"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <h4 class="mb-5">Notas</h4>
     <div class="row" id="container_notas">
         <table id="materias" class="table table-striped table-bordered acade-table" style="width:100%" border="3">
@@ -34,14 +55,22 @@
     </div>
 </div>
 <script>
+    function closeModal(){
+        var myModalEl = document.getElementById('printNotas');
+        const modal = bootstrap.Modal.getInstance(myModalEl);    
+        modal.hide();
+    }
     function printdiv(elem) {
-        var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
-        var footer_str = '</body></html>';
-        var new_str = document.getElementById(elem).innerHTML;
-        var old_str = document.body.innerHTML;
-        document.body.innerHTML = header_str + "<div id='print'>"+ new_str +"</div>"+ footer_str;
-        window.print();
-        document.body.innerHTML = old_str;
-        return false;
+        closeModal();
+        var sleep = setTimeout(() => {
+            var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
+            var footer_str = '</body></html>';
+            var new_str = document.getElementById(elem).innerHTML;
+            var old_str = document.body.innerHTML;
+            document.body.innerHTML = header_str + "<div id='print'>"+ new_str +"</div>"+ footer_str;
+            window.print();
+            document.body.innerHTML = old_str;
+            return false;
+        }, "500");
     }
 </script>

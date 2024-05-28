@@ -21,6 +21,18 @@ routes.push(
 routesStudents.push(
     {
         'method': 'get',
+        'path': '/estudiantes/registrar',
+        'function': viewController.registrarMaterias,
+        'role': 1 
+    },
+    {
+        'method': 'post',
+        'path': '/estudiantes/registrar',
+        'function': viewController.cargarMaterias,
+        'role': 1 
+    },
+    {
+        'method': 'get',
         'path': '/estudiantes/horario',
         'function': viewController.horario,
         'role': 1

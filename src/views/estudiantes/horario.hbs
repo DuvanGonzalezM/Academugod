@@ -1,9 +1,28 @@
 <div class="container text-center">
+    <a href="/" type="button" class="btn btn-danger backBtn">
+        <i class="bi bi-arrow-left"></i>
+        Atrás
+    </a>
+    <button class="acade-card printBtn" onclick="printdiv('horario')">
+    {{!-- <button class="acade-card printBtn" onclick="window.print()"> --}}
+        <i class="bi bi-printer"></i>
+        Imprimir
+    </button>
     <h1>Horario</h1>
     <div id="horario"></div>
 </div>
 
 <script>
+    function printdiv(elem) {
+        var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
+        var footer_str = '</body></html>';
+        var new_str = document.getElementById(elem).innerHTML;
+        var old_str = document.body.innerHTML;
+        document.body.innerHTML = header_str + "<div id='print'>"+ new_str +"</div>"+ footer_str;
+        window.print();
+        document.body.innerHTML = old_str;
+        return false;
+    }
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('horario');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -12,6 +31,7 @@
             initialView: 'dayGridWeek',
             contentHeight: 400,
             day: 'long',
+            headerToolbar: false,
             views: {
                 dayGridWeek:{
                     dayHeaderFormat: { weekday: 'long' },

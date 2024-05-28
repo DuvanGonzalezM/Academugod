@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const { engine } = require('express-handlebars');
 const dateFormat = require('handlebars-dateformat');
-const { equal } = require('handlebars-helpers'); // Import the eq helper
+const equal = require('handlebars-helper-equal');
 const bodyParser = require('body-parser');
 const Routes = require('./routes/generateRoutes');
 
@@ -38,4 +38,3 @@ app.listen(app.get('port'), () => {
 });
 
 app.use('/', Routes);
-// app.use('/', viewsRoutes);

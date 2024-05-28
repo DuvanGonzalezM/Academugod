@@ -5,25 +5,25 @@
     </a>
 	<div class="row justify-content-center">
 		<div class="col-12">
-			<h1>Registro de Estudiantes</h1>
-			<p>Por medio de este formulario se registraran los nuevos estudiantes.</p>
+			<h1>Editar Estudiante</h1>
+			<p>Por medio de este formulario se puede editar los datos de los estudiantes.</p>
 		</div>
 		<div class="col-4">
 			<form action="" method="post">
 				<div class="form-group">
 					<label for="numero_estudiante">Identificación</label>
-					<input name="numero_estudiante" type="text" class="form-control" id="numero_estudiante" required>
+					<input value="{{estudiante.numero_estudiante}}" name="numero_estudiante" type="text" class="form-control" id="numero_estudiante" required>
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
-					<input name="nombre" type="text" class="form-control" id="nombre" required>
+					<input value="{{estudiante.nombre}}"name="nombre" type="text" class="form-control" id="nombre" required>
 				</div>
 				<div class="form-group">
 					<label for="apellido">Apellido</label>
-					<input name="apellido" type="text" class="form-control" id="apellido" required>
+					<input value="{{estudiante.apellido}}"name="apellido" type="text" class="form-control" id="apellido" required>
 				</div>
 				<button type="submit" class="btn btn-success mt-2">
 					<i class="bi bi-upload"></i>
-					Registrar
+					Editar
 				</button>
 				{{#if error }}
 					<div class="error-form">

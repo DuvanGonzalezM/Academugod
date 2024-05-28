@@ -38,4 +38,3 @@ app.listen(app.get('port'), () => {
 });
 
 app.use('/', Routes);
-// app.use('/', viewsRoutes);

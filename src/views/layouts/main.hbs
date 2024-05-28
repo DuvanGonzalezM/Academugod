@@ -21,10 +21,13 @@
                 <img class="logo-header" src="/assets/img/logo.png" alt="Icono">
             </a>
             <h1 class="text-header">Bienvenido, {{#if userName}} {{userName}} {{/if}}</h1>
-            <a href="/logout" class="btn btn-danger logout">Salir</a>
+            <a href="/logout" class="btn btn-danger logout">
+                <i class="bi bi-arrow-bar-left"></i>
+                Salir
+            </a>
         </header>
 
-        <section class="container content">
+        <section id="acade_container" class="container content">
             <div class="row">
                 <div class="col-12">
                     {{{body}}}

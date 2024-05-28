@@ -35,7 +35,7 @@ footer {
 
 .text-header{
     margin-left: 26%;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .logout{
@@ -88,4 +88,11 @@ a.acade-card {
 }
 .acade-table .dt-type-numeric{
     text-align: center !important;
+}
+.backBtn{
+    float: left;
+}
+.printBtn{
+    float: right;
+    padding: 0.5rem;
 }

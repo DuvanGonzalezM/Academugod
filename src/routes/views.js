@@ -59,12 +59,6 @@ routesTeachers.push(
         'function': viewController.consultarNotas,
         'role': 2
     },
-    {
-        'method': 'get',
-        'path': '/docentes/consultar_materias',
-        'function': viewController.getEstudiantesByMateriaID,
-        'role': 2
-    },
 );
 
 // Rutas Administrativos

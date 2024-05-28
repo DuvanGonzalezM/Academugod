@@ -102,7 +102,7 @@ function getMateriasMateriaID(idMateria){
 
 function getEstudiantesByMateriaID(idMateria){
   
-    estudiantes = dbConection.selectRaw('SELECT distinct es.nombre, es.apellido, es.numero_estudiante, c.nota_c1, c.nota_c2, c.nota_c3, (c.nota_c1+c.nota_c2+c.nota_c3)/3 as promedio FROM calificaciones as c join registro_materias as rm on rm.id_registro = c.id_materia join horario as h on rm.id_materia = h.id_horario join estudiantes as es on rm.id_estudiante = es.id_estudiante where h.id_materia = ?', [idMateria]);
+    estudiantes = dbConection.selectRaw('SELECT distinct es.nombre, es.apellido, es.numero_estudiante, c.nota_c1, c.nota_c2, c.nota_c3, round((c.nota_c1+c.nota_c2+c.nota_c3)/3,1) as promedio FROM calificaciones as c join registro_materias as rm on rm.id_registro = c.id_materia join horario as h on rm.id_materia = h.id_horario join estudiantes as es on rm.id_estudiante = es.id_estudiante where h.id_materia = ?', [idMateria]);
 
     return estudiantes;
 }

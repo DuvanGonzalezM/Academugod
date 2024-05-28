@@ -1,23 +1,14 @@
-<title>Admin: Editar</title>
-<style>
-	.form-header {
-		text-align: center;
-		margin-bottom: 30px;
-		border-radius: 10px;
-		background-color: #2b3866;
-		padding: 10px;
-		color: #fff !important;
-	}
-</style>
-<div class="form-header mt-3">
-	<div class="row">
-		<div class="col-md-6">
+<div class="container text-center form-header ">
+    <a href="/admistrativo/estudiantes" type="button" class="btn btn-danger backBtn">
+        <i class="bi bi-arrow-left"></i>
+        Atrás
+    </a>
+	<div class="row justify-content-center">
+		<div class="col-12">
 			<h1>Editar Estudiante</h1>
 			<p>Por medio de este formulario se puede editar los datos de los estudiantes.</p>
-			<i class="bi bi-clipboard-fill"></i>
 		</div>
-		<div class="col-md-6">
-			<h1>Formulario</h1>
+		<div class="col-4">
 			<form action="" method="post">
 				<div class="form-group">
 					<label for="numero_estudiante">Identificación</label>
@@ -30,7 +21,10 @@
 					<label for="apellido">Apellido</label>
 					<input value="{{estudiante.apellido}}"name="apellido" type="text" class="form-control" id="apellido" required>
 				</div>
-				<button type="submit" class="btn btn-primary mt-2">Submit</button>
+				<button type="submit" class="btn btn-success mt-2">
+					<i class="bi bi-upload"></i>
+					Editar
+				</button>
 				{{#if error }}
 					<div class="error-form">
 						{{error}}
@@ -40,5 +34,3 @@
 		</div>
 	</div>
 </div>
-<a href="/admistrativo/estudiantes" type="button" class="btn btn-danger">
-<i class="bi bi-arrow-left-circle-fill"></i> Atrás</a>

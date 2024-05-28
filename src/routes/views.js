@@ -49,12 +49,6 @@ routesStudents.push(
         'function': redesController.sendTemperaturas,
         'role': 4
     },
-    {
-        'method': 'post',
-        'path': '/temperaturas',
-        'function': redesController.sendTemperaturas,
-        'role': 4
-    },
 );
 
 // Rutas docentes

@@ -105,6 +105,13 @@ routesAdmin.push(
     },
 
     {
+        'method': 'post',
+        'path': '/admistrativo/registrar/profesores',
+        'function': adminController.insertarProfesores,
+        'role': 3
+    },
+
+    {
         'method': 'get',
         'path': '/admistrativo/consultar/profesores',
         'function': adminController.consultarProfesores,

@@ -3,7 +3,7 @@
         <i class="bi bi-arrow-left"></i>
         Atrás
     </a>
-    <h4 class="mt-5">Materias</h4>
+    <h1 class="mb-5">Materias</h1>
     <div class="row">
         <form action="" id="registro_materias" method="post">
             {{#if materias}}
@@ -28,12 +28,43 @@
                         <td>{{hora_fin}}</td>
                         <td>{{nombre_profesor}} {{apellido}} </td>
                         <td>{{aula}}</td>
-                        <td><input name="cb_{{id_horario}}" type="checkbox" id="cb_{{id_horario}}" value="{{id_horario}}"></td>
+                        
+                        <td><input onchange="validateCheck(event)" class="inp" name="cb_{{id_horario}}" type="checkbox" id="cb_{{id_horario}}" value="{{id_horario}}"
+                            {{#each ../materias_registradas }}
+                                {{#equal id_materia ../id_horario }}
+                                checked
+                                {{/equal}}
+                            {{/each}}
+                        > </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
-            <input type="submit" class="btn btn-success" value="Registrar" form="registro_materias">
+            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#registrarMaterias">
+                <i class="bi bi-cloud-arrow-up"></i>
+                Registrar Materias
+            </button>
+
+            <div class="modal fade" id="registrarMaterias" tabindex="-1" aria-labelledby="registrarMateriasLabel"
+                aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content acade-card">
+                        <div class="modal-header text-center justify-content-center">
+                            <h5 class="acade-modal-title" id="registrarMateriasLabel">¿Deseas registrar las materias seleccionadas?</h5>
+                        </div>
+                        <div class="modal-footer text-center justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                No
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                Si
+                                <i class="bi bi-cloud-arrow-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {{/if }}
             {{#unless materias}}
             <h4>Ya tiene las materias registradas</h4>
@@ -41,3 +72,23 @@
         </form>
     </div>
 </div>
+
+<script>
+    function validateCheck(event){
+        var inpChecked = [...document.querySelectorAll('.inp:checked')].map(e => e.value);
+        var checkboxs = document.querySelectorAll('.inp');
+        if(inpChecked.length >= 5){
+            checkboxs.forEach(function(value){
+                if(!value.checked){
+                    value.disabled="disabled";
+                }
+            });
+        } else{
+            checkboxs.forEach(function(value){
+                if(value.disabled){
+                    value.disabled = false;
+                }
+            });
+        }
+    }
+</script>

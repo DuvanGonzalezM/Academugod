@@ -2,6 +2,7 @@
 $(document).ready(function() {
     $('.acade-table').DataTable({
         retrieve: true,
+        "pageLength": 100,
         "language": {
             "sProcessing":    "Procesando...",
             "sLengthMenu":    "Mostrar _MENU_ registros",

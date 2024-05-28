@@ -1,42 +1,41 @@
 <div class="container text-center form-header ">
-    <a href="/admistrativo/Profesores" type="button" class="btn btn-danger backBtn">
+    <a href="/admistrativo/consultar/profesores" type="button" class="btn btn-danger backBtn">
         <i class="bi bi-arrow-left"></i>
         Atrás
     </a>
 	<div class="row justify-content-center">
 		<div class="col-12">
-			<h1>Registro de Profesores</h1>
-			<p>Por medio de este formulario se registraran los nuevos profesores.</p>
+			<h1>Editar profesor</h1>
+			<p>Por medio de este formulario se puede editar los datos de los profesores.</p>
 		</div>
 		<div class="col-4">
-			<form action=""  method="post">
+			<form action="" method="post">
 				<div class="form-group">
 					<label for="no_identificacion">Identificación</label>
-					<input name ="no_identificacion" type="text" class="form-control" id="no_identificacion" required>
-				</div>
+					<input value="{{profesor.no_identificacion}}" name="no_identificacion" type="text" class="form-control" id="no_identificacion" required>
 				<div class="form-group">
-					<label for="tipo_identificacion">Tipo de Identificación</label>
-					<input name="tipo_identificacion" type="text" class="form-control" id="tipo_identificacion" required>
+					<label for="nombre">Tipo_identificación</label>
+					<input value="{{profesor.tipo_identificacion}}"name="tipo_identificacion" type="text" class="form-control" id="tipo_identificacion" required>
 				</div>
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
-					<input name="nombre" type="text" class="form-control" id="nombre" required>
+					<input value="{{profesor.nombre}}"name="nombre" type="text" class="form-control" id="nombre" required>
 				</div>
-				<div class="form-group">
+                <div class="form-group">
 					<label for="apellido">Apellido</label>
-					<input name="apellido" type="text" class="form-control" id="apellido" required>
-				</div>
-				<button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#registrarProfesor">
-					Registrar
+					<input value="{{profesor.apellido}}"name="apellido" type="text" class="form-control" id="apellido" required>
+				</div>				
+				<button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#editarProfesor">
+					Editar
 					<i class="bi bi-send-plus"></i>
 				</button>
 
-				<div class="modal fade" id="registrarProfesor" tabindex="-1" aria-labelledby="registrarProfesorLabel"
+				<div class="modal fade" id="editarProfesor" tabindex="-1" aria-labelledby="editarProfesorLabel"
 					aria-hidden="true">
 					<div class="modal-dialog ">
 						<div class="modal-content acade-card">
 							<div class="modal-header text-center justify-content-center">
-								<h5 class="acade-modal-title" id="registrarProfesorLabel">¿Deseas registrar el profesor?</h5>
+								<h5 class="acade-modal-title" id="editarProfesorLabel">¿Deseas editar el profesor?</h5>
 							</div>
 							<div class="modal-footer text-center justify-content-center">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

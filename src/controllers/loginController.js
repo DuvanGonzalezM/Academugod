@@ -2,6 +2,10 @@ const bcrypt = require('bcrypt');
 const dbConection = require('../services/dataBaseService');
 
 function login(req, res){
+    req.session.loggedin = false;
+    req.session.name = '';
+    req.session.id_usuario = '';
+    req.session.rol = '';
     res.render('login/index', {layout: 'login.hbs' });
 }
 

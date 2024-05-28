@@ -3,25 +3,53 @@
         <i class="bi bi-arrow-left"></i>
         Atrás
     </a>
-    <button class="acade-card printBtn" onclick="printdiv('horario')">
-    {{!-- <button class="acade-card printBtn" onclick="window.print()"> --}}
+    <button type="button" class="acade-card printBtn" data-bs-toggle="modal" data-bs-target="#printHorario">
         <i class="bi bi-printer"></i>
         Imprimir
     </button>
-    <h1>Horario</h1>
+
+    <div class="modal fade" id="printHorario" tabindex="-1" aria-labelledby="printHorarioLabel"
+        aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content acade-card">
+                <div class="modal-header text-center justify-content-center">
+                    <h5 class="acade-modal-title" id="printHorarioLabel">¿Desea imprimir el horario {{userName}}?</h5>
+                </div>
+                <div class="modal-footer text-center justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        No
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                    <button onclick="printdiv('horario')" class="btn btn-success">
+                        Si
+                        <i class="bi bi-printer"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="mb-5">Horario</h1>
     <div id="horario"></div>
 </div>
 
 <script>
+    function closeModal(){
+        var myModalEl = document.getElementById('printHorario');
+        const modal = bootstrap.Modal.getInstance(myModalEl);    
+        modal.hide();
+    }
     function printdiv(elem) {
-        var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
-        var footer_str = '</body></html>';
-        var new_str = document.getElementById(elem).innerHTML;
-        var old_str = document.body.innerHTML;
-        document.body.innerHTML = header_str + "<div id='print'>"+ new_str +"</div>"+ footer_str;
-        window.print();
-        document.body.innerHTML = old_str;
-        return false;
+        closeModal();
+        var sleep = setTimeout(() => {
+            var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
+            var footer_str = '</body></html>';
+            var new_str = document.getElementById(elem).innerHTML;
+            var old_str = document.body.innerHTML;
+            document.body.innerHTML = header_str + "<div id='print'>"+ new_str +"</div>"+ footer_str;
+            window.print();
+            document.body.innerHTML = old_str;
+            return false;
+        }, "500");
     }
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('horario');

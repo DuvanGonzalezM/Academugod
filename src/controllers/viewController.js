@@ -166,7 +166,7 @@ function getEstudiantesByMateriaID(idMateria){
 }
 
 async function consultarNotasEstudiantes(req, res){
-    notas = await dbConection.selectRaw('SELECT distinct m.nombre, c.nota_c1, c.nota_c2, c.nota_c3, (c.nota_c1+c.nota_c2+c.nota_c3)/3 as promedio FROM calificaciones as c join registro_materias as rm on rm.id_registro = c.id_materia join estudiantes as es on rm.id_estudiante = es.id_estudiante join horario as h on rm.id_materia = h.id_horario join materias as m on h.id_materia = m.id_materia where es.id_usuario = ?', [req.session.id_usuario]).then((notas) => {
+    notas = await dbConection.selectRaw('SELECT distinct m.nombre, c.nota_c1, c.nota_c2, c.nota_c3, round((c.nota_c1+c.nota_c2+c.nota_c3)/3,1) as promedio FROM registro_materias as rm left join calificaciones as c on rm.id_registro = c.id_materia join estudiantes as es on rm.id_estudiante = es.id_estudiante join horario as h on rm.id_materia = h.id_horario join materias as m on h.id_materia = m.id_materia where es.id_usuario = ?', [req.session.id_usuario]).then((notas) => {
         res.render('estudiantes/consultar_notas', {userName: req.session.name, notas: notas}); 
     }).catch((error) => {
         res.render('estudiantes/consultar_notas', {userName: req.session.name, notas: []}); 

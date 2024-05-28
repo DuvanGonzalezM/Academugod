@@ -54,6 +54,12 @@ routesStudents.push(
 // Rutas docentes
 routesTeachers.push(
     {
+        'method': 'post',
+        'path': '/docentes/cargar/notas/:id_materia',
+        'function': viewController.subirNotas,
+        'role': 2
+    },
+    {
         'method': 'get',
         'path': '/docentes/cargar/notas/:id_materia',
         'function': viewController.cargarNotas,

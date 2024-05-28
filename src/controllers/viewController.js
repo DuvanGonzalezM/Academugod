@@ -57,12 +57,38 @@ async function horario(req, res){
 }
 
 async function cargarNotas(req, res){
+    materia = await getMateriasByMateriaID(req.params.id_materia).then((materia) => {
+        return materia;
+    }).catch((error) => {
+       return "";
+    });
     estudiantes = await getEstudiantesByMateriaID(req.params.id_materia).then((estudiantes) => {
         return estudiantes;
     }).catch((error) => {
        return [];
     });
-    res.render('docentes/cargar_notas', {userName: req.session.name, estudiantes: estudiantes});
+    res.render('docentes/cargar_notas', {userName: req.session.name, estudiantes: estudiantes, materia: materia});
+}
+
+async function subirNotas(req, res){
+    var data = req.body;
+    delete data['notas_estudiantes_length'];
+    for (const [key, value] of Object.entries(data)) {
+        id_estudiante = key.replace('notas_', "");
+        notaC1 = value[0] ? value[0] : 0;
+        notaC2 = value[1] ? value[1] : 0;
+        notaC3 = value[2] ? value[2] : 0;
+        var register = await dbConection.selectRaw('select count(c.id_calificacion) as register from calificaciones AS c join registro_materias AS rm ON c.id_materia = rm.id_registro join horario as h on rm.id_materia = h.id_horario where rm.id_estudiante = ? and h.id_materia=?', [id_estudiante, req.params.id_materia]);
+        var registro_materia = await dbConection.selectRaw('select rm.id_registro from registro_materias AS rm join horario as h on rm.id_materia = h.id_horario where rm.id_estudiante = ? and h.id_materia=?', [id_estudiante, req.params.id_materia]);
+
+        if(register[0].register == 0){
+            await dbConection.insertRaw('INSERT INTO calificaciones (id_materia, nota_c1, nota_c2, nota_c3) VALUES ('+registro_materia[0].id_registro+', '+notaC1+', '+notaC2+', '+notaC3+')');
+        }else if(register[0].register == 1){
+            await dbConection.updateRaw('UPDATE calificaciones SET nota_c1 = '+notaC1+', nota_c2 = '+notaC2+', nota_c3 = '+notaC3+' where id_materia = '+registro_materia[0].id_registro);
+        }
+    }
+    
+    res.redirect('/docentes/consultar/estudiantes/'+req.params.id_materia);
 }
 
 async function consultarNotas(req, res){
@@ -91,11 +117,11 @@ async function consultarMaterias (req, res){
 }
 
 async function registrarMaterias (req,res){
-    var materias_registradas= await dbConection.selectRaw('SELECT rm.id_materia  from registro_materias as rm inner join estudiantes as es  on es.id_estudiante = rm.id_estudiante  where es.id_usuario = ?', [req.session.id_usuario]);
-    console.log(materias_registradas.length);
-    if (materias_registradas.length < 5 ){
-        await dbConection.selectRaw('SELECT h.id_horario, m.nombre AS nombre_materia, h.dia_semana, h.hora_inicio, h.hora_fin, p.nombre AS nombre_profesor, p.apellido, h.aula FROM academugod.horario AS h INNER JOIN academugod.materias AS m ON h.id_materia = m.id_materia INNER JOIN academugod.profesores AS p ON h.id_profesor = p.id_profesor where not h.id_horario in  (select rm.id_materia  from registro_materias as rm inner join estudiantes as es  on es.id_estudiante = rm.id_estudiante  where es.id_usuario = ? )', [req.session.id_usuario]).then((materias) => {
-            res.render('estudiantes/registrar_materias', {userName: req.session.name, materias});
+    var materias_registradas = await dbConection.selectRaw('SELECT rm.id_materia  from registro_materias as rm inner join estudiantes as es  on es.id_estudiante = rm.id_estudiante  where es.id_usuario = ?', [req.session.id_usuario]);
+    var num_mat_reg = materias_registradas.length;
+    if (num_mat_reg < 5 ){
+        await dbConection.selectRaw('SELECT h.id_horario, m.nombre AS nombre_materia, h.dia_semana, h.hora_inicio, h.hora_fin, p.nombre AS nombre_profesor, p.apellido, h.aula FROM academugod.horario AS h INNER JOIN academugod.materias AS m ON h.id_materia = m.id_materia INNER JOIN academugod.profesores AS p ON h.id_profesor = p.id_profesor').then((materias) => {
+            res.render('estudiantes/registrar_materias', {userName: req.session.name, materias, materias_registradas});
         }).catch((error) => {
             res.render('estudiantes/registrar_materias', {userName: req.session.name, materias: []});
         });
@@ -108,12 +134,18 @@ async function cargarMaterias (req,res){
     var data = req.body;
     delete data['materias_length'];
     var values = '';
-    values = Object.keys(data).forEach((item, value) => {
-        return '(' + req.session.id_usuario + ',' + value + ')'; 
-    } );
-    console.log(req.session.id_usuario,values);
-    await dbConection.insertRaw('INSERT INTO registro_materias ( id_estudiante, id_materia ) VALUES ('+req.session.id_usuario+','+data["cb_8"] +')');
-
+    var id_estudiante = await dbConection.selectRaw('SELECT es.id_estudiante from estudiantes as es where es.id_usuario = ?', [req.session.id_usuario]);
+    id_estudiante = id_estudiante[0].id_estudiante;
+    for (const [key, value] of Object.entries(data)) {
+        values += "(" +id_estudiante+","+ value +"), "; 
+    }
+    values = values.slice(0, -2);
+    await dbConection.deleteRaw('DELETE from registro_materias where id_estudiante='+id_estudiante);
+    await dbConection.insertRaw('INSERT INTO registro_materias ( id_estudiante, id_materia ) VALUES '+ values ).then((materias) => {
+        res.redirect('/estudiantes/registrar');
+    }).catch((error) => {
+        res.redirect('/estudiantes/registrar');
+    });
 }
 
 function getMateriasByDocenteID(idDocente){
@@ -128,7 +160,7 @@ function getMateriasByMateriaID(idMateria){
 
 function getEstudiantesByMateriaID(idMateria){
   
-    estudiantes = dbConection.selectRaw('SELECT distinct es.nombre, es.apellido, es.numero_estudiante, c.nota_c1, c.nota_c2, c.nota_c3, (c.nota_c1+c.nota_c2+c.nota_c3)/3 as promedio FROM calificaciones as c join registro_materias as rm on rm.id_registro = c.id_materia join horario as h on rm.id_materia = h.id_horario join estudiantes as es on rm.id_estudiante = es.id_estudiante where h.id_materia = ?', [idMateria]);
+    estudiantes = dbConection.selectRaw('SELECT distinct es.id_estudiante, es.nombre, es.apellido, es.numero_estudiante, c.nota_c1, c.nota_c2, c.nota_c3, round((c.nota_c1+c.nota_c2+c.nota_c3)/3,1) as promedio FROM registro_materias as rm left join calificaciones as c on rm.id_registro = c.id_materia join horario as h on rm.id_materia = h.id_horario join estudiantes as es on rm.id_estudiante = es.id_estudiante where h.id_materia = ?', [idMateria]);
 
     return estudiantes;
 }
@@ -142,4 +174,5 @@ module.exports = {
     consultarMaterias,
     registrarMaterias,
     cargarMaterias,
+    subirNotas,
 }

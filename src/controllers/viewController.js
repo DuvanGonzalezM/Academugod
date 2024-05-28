@@ -91,11 +91,17 @@ async function consultarMaterias (req, res){
 }
 
 async function registrarMaterias (req,res){
-     await dbConection.selectRaw('SELECT h.id_horario, m.nombre AS nombre_materia, h.dia_semana, h.hora_inicio, h.hora_fin, p.nombre AS nombre_profesor, p.apellido, h.aula FROM academugod.horario AS h INNER JOIN academugod.materias AS m ON h.id_materia = m.id_materia INNER JOIN academugod.profesores AS p ON h.id_profesor = p.id_profesor ').then((materias) => {
-        res.render('estudiantes/registrar_materias', {userName: req.session.name, materias});
-    }).catch((error) => {
+    var materias_registradas= await dbConection.selectRaw('SELECT rm.id_materia  from registro_materias as rm inner join estudiantes as es  on es.id_estudiante = rm.id_estudiante  where es.id_usuario = ?', [req.session.id_usuario]);
+    console.log(materias_registradas.length);
+    if (materias_registradas.length < 5 ){
+        await dbConection.selectRaw('SELECT h.id_horario, m.nombre AS nombre_materia, h.dia_semana, h.hora_inicio, h.hora_fin, p.nombre AS nombre_profesor, p.apellido, h.aula FROM academugod.horario AS h INNER JOIN academugod.materias AS m ON h.id_materia = m.id_materia INNER JOIN academugod.profesores AS p ON h.id_profesor = p.id_profesor where not h.id_horario in  (select rm.id_materia  from registro_materias as rm inner join estudiantes as es  on es.id_estudiante = rm.id_estudiante  where es.id_usuario = ? )', [req.session.id_usuario]).then((materias) => {
+            res.render('estudiantes/registrar_materias', {userName: req.session.name, materias});
+        }).catch((error) => {
+            res.render('estudiantes/registrar_materias', {userName: req.session.name, materias: []});
+        });
+    } else {
         res.render('estudiantes/registrar_materias', {userName: req.session.name, materias: []});
-    });
+    }
 }
 
 async function cargarMaterias (req,res){
@@ -106,7 +112,7 @@ async function cargarMaterias (req,res){
         return '(' + req.session.id_usuario + ',' + value + ')'; 
     } );
     console.log(req.session.id_usuario,values);
-    await dbConection.insertRaw('INSERT INTO registro_materias ( id_estudiante, id_materia ) VALUES ('+req.session.id_usuario+','+data["cb_8"] +' )');
+    await dbConection.insertRaw('INSERT INTO registro_materias ( id_estudiante, id_materia ) VALUES ('+req.session.id_usuario+','+data["cb_8"] +')');
 
 }
 

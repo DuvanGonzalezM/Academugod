@@ -21,6 +21,18 @@ routes.push(
 routesStudents.push(
     {
         'method': 'get',
+        'path': '/estudiantes/registrar',
+        'function': viewController.registrarMaterias,
+        'role': 1 
+    },
+    {
+        'method': 'post',
+        'path': '/estudiantes/registrar',
+        'function': viewController.cargarMaterias,
+        'role': 1 
+    },
+    {
+        'method': 'get',
         'path': '/estudiantes/horario',
         'function': viewController.horario,
         'role': 1
@@ -41,6 +53,12 @@ routesStudents.push(
 
 // Rutas docentes
 routesTeachers.push(
+    {
+        'method': 'post',
+        'path': '/docentes/cargar/notas/:id_materia',
+        'function': viewController.subirNotas,
+        'role': 2
+    },
     {
         'method': 'get',
         'path': '/docentes/cargar/notas/:id_materia',

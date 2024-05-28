@@ -1,0 +1,70 @@
+<div class="container text-center">
+    <a href="/" type="button" class="btn btn-danger backBtn">
+        <i class="bi bi-arrow-left"></i>
+        Atrás
+    </a>
+    <h1>Materias</h1>
+    <div class="row">
+        <form action="" id="registro_materias" method="post">
+            {{#if materias}}
+            <table id="materias" class="table table-striped table-bordered acade-table" style="width:100%" border="3">
+                <thead>
+                    <tr>
+                        <th> Materia </th>
+                        <th> Dia </th>
+                        <th> Hora Inicio </th>
+                        <th> Hora Fin </th>
+                        <th> Profesor </th>
+                        <th> Aula </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each materias}}
+                    <tr>
+                        <td>{{nombre_materia}}</td>
+                        <td>{{dia_semana}}</td>
+                        <td>{{hora_inicio}}</td>
+                        <td>{{hora_fin}}</td>
+                        <td>{{nombre_profesor}} {{apellido}} </td>
+                        <td>{{aula}}</td>
+                        
+                        <td><input onchange="validateCheck(event)" class="inp" name="cb_{{id_horario}}" type="checkbox" id="cb_{{id_horario}}" value="{{id_horario}}"
+                            {{#each ../materias_registradas }}
+                                {{#equal id_materia ../id_horario }}
+                                checked
+                                {{/equal}}
+                            {{/each}}
+                        > </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <input type="submit" class="btn btn-success" value="Registrar" form="registro_materias">
+            {{/if }}
+            {{#unless materias}}
+            <h4>Ya tiene las materias registradas</h4>
+            {{/unless}}
+        </form>
+    </div>
+</div>
+
+<script>
+    function validateCheck(event){
+        var inpChecked = [...document.querySelectorAll('.inp:checked')].map(e => e.value);
+        var checkboxs = document.querySelectorAll('.inp');
+        if(inpChecked.length >= 5){
+            checkboxs.forEach(function(value){
+                if(!value.checked){
+                    value.disabled="disabled";
+                }
+            });
+        } else{
+            checkboxs.forEach(function(value){
+                if(value.disabled){
+                    value.disabled = false;
+                }
+            });
+        }
+    }
+</script>

@@ -14,10 +14,10 @@ async function dashboard(req, res){
             res.render('administrativos/dashboard', {userName: req.session.name});
             break;
         case '4':
-            await dbConection.selectRaw('SELECT t.* FROM temperaturas as t order by t.datetime desc limit 100').then((temperaturas) => {
+            await dbConection.selectRaw("SELECT t.temperatura, t.humedad, convert_tz(t.datetime, 'UTC', 'America/Bogota') as datetime FROM temperaturas as t order by t.datetime desc limit 100").then((temperaturas) => {
                 var lastTemperature = temperaturas.shift();
                 temperaturas = redesController.formatedDateTemperature(temperaturas);
-                lastTemperature.datetime = dateFormat(lastTemperature.datetime, "DD/MM/YYYY HH:mm:ss");
+                lastTemperature.datetime = dateFormat(lastTemperature.datetime, "DD/MM/YYYY HH:mm:ss", true);
                 res.render('redes/dashboard', {userName: req.session.name, lastTemperature: lastTemperature, temperaturas: JSON.stringify(temperaturas)});
             }).catch((error) => {
                 res.render('redes/dashboard', {userName: req.session.name, lastTemperature: [], temperaturas: JSON.stringify([])});

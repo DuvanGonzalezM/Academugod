@@ -44,6 +44,12 @@ routesStudents.push(
         'role': 1
     },
     {
+        'method': 'get',
+        'path': '/temperaturas',
+        'function': redesController.getTemperaturas,
+        'role': 4
+    },
+    {
         'method': 'post',
         'path': '/temperaturas',
         'function': redesController.sendTemperaturas,

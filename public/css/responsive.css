@@ -1,0 +1,49 @@
+/* General */
+.container-fluid {
+    padding: 0 15px;
+}
+
+/* Ajustes en la tarjeta */
+.acade-card {
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Ajuste para el ícono y etiquetas */
+.temperature, .humidity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.dht-labels {
+    margin-left: 0.5rem;
+}
+
+/* Hacer responsiva la tabla */
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Responsividad para imágenes */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 576px) {
+    .acade-card {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .temperature, .humidity {
+        font-size: 1rem;
+    }
+}
+

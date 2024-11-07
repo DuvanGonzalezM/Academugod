@@ -1,44 +1,66 @@
-<div class="container text-center">
-    <div class="card acade-card">
-        <div class="temperature">
-                <i class='fas fa-thermometer-half'></i>
-                <span class='dht-labels'>Temperatura: <b id="tempValue">{{lastTemperature.temperatura}}</b></span>
-                <sup class='units'>&deg;C</sup>
-            </p>
+<div class="container-fluid text-center px-0">
+    <div class="card acade-card mx-auto my-4" style="max-width: 500px;">
+        <div class="temperature mb-3">
+            <i class='fas fa-thermometer-half'></i>
+            <span class='dht-labels'>Temperatura: <b
+                    id="tempValue">{{lastTemperature.temperatura}}</b></span>
+            <sup class='units'>&deg;C</sup>
         </div>
-        <div class="humidity">
+        <div class="humidity mb-3">
             <i class='fas fa-tint'></i>
-            <span class='dht-labels'>Humedad: <b id="humValue">{{lastTemperature.humedad}}</b></span>
+            <span class='dht-labels'>Humedad: <b
+                    id="humValue">{{lastTemperature.humedad}}</b></span>
             <sup class='units'>&percnt;</sup>
         </div>
         <span class="mt-2" id="dateValue">{{lastTemperature.datetime}}</span>
     </div>
-    <h4 class="mt-5">Ultimas lecturas</h4>
     <div class="row">
-        <table id="temperaturas" class="table table-striped table-bordered acade-table" style="width:100%" border="3">
-            <thead>
-                <tr>
-                    <th>Temperatura</th>
-                    <th>Humedad</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-        </table>
+        <div id="lineChartTemp" class="col-sm-12 col-md-6 mb-2"></div>
+        <div id="lineChartHum" class="col-sm-12 col-md-6 mb-2"></div>
+    </div>
+    <h4 class="mt-5">Últimas lecturas</h4>
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table id="temperaturas"
+                class="table table-striped table-bordered acade-table"
+                style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Temperatura</th>
+                        <th>Humedad</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 <script>
     var dataTemp = {{{temperaturas}}};
+    var lastTemp = "{{{lastTemperature.temperatura}}}" || "0";
+    var lastHum = "{{{lastTemperature.humedad}}}" || "0";
+    var lastDate = "{{{lastTemperature.datetime}}}" || "";
     var table = $('#temperaturas').DataTable({
         retrieve: true,
+        responsive: true,
+        scrollX: true,
         order: [[2, 'desc']],
         data: dataTemp,
-        "pageLength": 100,
+        paging:   false,
         columns: [
             { data: 'temperatura' },
             { data: 'humedad' },
             { data: 'datetime' }
         ]
     });
+    dataTemp.unshift({
+        temperatura: lastTemp + ' °C',
+        humedad: lastHum + ' %',
+        datetime: lastDate
+    });
+    var { tempData, humData, labels } = processData(dataTemp);
+    lineChartTemp(tempData, labels);
+    lineChartHum(humData, labels);
     var tempValue = document.getElementById('tempValue');
     var humValue = document.getElementById('humValue');
     var dateValue = document.getElementById('dateValue');
@@ -48,16 +70,112 @@
             type: 'GET',
             dataType: 'json',
         }).done( function(result) {
-            tempValue.innerText=result.last.temperatura;
-            humValue.innerText=result.last.humedad;
-            dateValue.innerText=result.last.datetime;
             table.clear();
             table.rows.add(result.data);
             table.draw();
+            tempValue.innerText=result.last.temperatura;
+            humValue.innerText=result.last.humedad;
+            dateValue.innerText=result.last.datetime;
+            result.last.temperatura+=' °C';
+            result.last.humedad+=' %';
+            result.data.unshift(result.last);
+            var { tempData, humData, labels } = processData(result.data);
+            lineChartTemp(tempData, labels);
+            lineChartHum(humData, labels);
         }).fail( function( jqXHR, textStatus, errorThrown ) {
             console.log( jqXHR.responseText, textStatus );
         });
     }, 2500);
+
+    function lineChartTemp(tempData, labels) {
+        var trace1 = {
+            x: labels,
+            y: tempData,
+            name: 'Temperatura (°C)',
+            type: 'scatter',
+            mode: 'lines+markers',
+            line: { color: 'rgb(255, 99, 132)', width: 3 },
+            marker: { size: 6 }
+        };
+
+        var data = [trace1];
+
+        var layout = {
+            title: 'Temperatura',
+            xaxis: { 
+                autorange: 'reversed'
+            },
+            yaxis: {
+                tickformat: '.1f',
+                automargin: true,
+            },
+            showlegend: true,
+            legend: {
+                x: 0.5,
+                y: -0.5,
+                xanchor: 'center', 
+                yanchor: 'top',
+                orientation: 'h'
+            },
+        };
+
+        Plotly.newPlot('lineChartTemp', data, layout, {staticPlot: true, responsive: true});
+    }
+
+    function lineChartHum(humData, labels) {
+        var trace1 = {
+            x: labels,
+            y: humData,
+            name: 'Humedad (%)',
+            type: 'scatter',
+            mode: 'lines+markers',
+            line: { color: 'rgb(54, 162, 235)', width: 3 },
+            marker: { size: 6 }
+        };
+
+        var data = [trace1];
+        var layout = {
+            title: 'Humedad',
+            xaxis: { 
+                autorange: 'reversed'
+            },
+            yaxis: {
+                dtick: .1,
+                tickformat: '.1f',
+            },
+            showlegend: true,
+            legend: {
+                x: 0.5,
+                y: -0.5,
+                xanchor: 'center', 
+                yanchor: 'top',
+                orientation: 'h'
+            },
+        };
+
+        Plotly.newPlot('lineChartHum', data, layout, {staticPlot: true, responsive: true});
+    }
+
+    function processData(data) {
+        var tempData = [];
+        var humData = [];
+        var labels = [];
+
+        data.forEach(function(item) {
+            var temp = item.temperatura.replace(" °C", "");
+            var hum = item.humedad.replace(" %", "");
+            console.log(temp, hum);
+            var date = item.datetime;
+
+            tempData.push(temp);
+            humData.push(hum);
+            labels.push(moment(date).format('hh:mm:ss'));
+        });
+
+        return { tempData, humData, labels };
+    }
 </script>
-<img id="sun" src="/assets/img/solecito.png" alt="Icono">
-<img id="panel" src="/assets/img/panel_solar.png" alt="Icono">
+{{!-- <img id="sun" class="responsive-img" src="/assets/img/solecito.png"
+    alt="Icono">
+<img id="panel" class="responsive-img" src="/assets/img/panel_solar.png"
+    alt="Icono"> --}}

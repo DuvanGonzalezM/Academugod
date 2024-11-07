@@ -1,12 +1,16 @@
-#sun{
+/* Estilo para el sol (#sun) */
+#sun {
     width: 7%;
     position: absolute;
     left: 8%;
     top: 30%;
     margin: -3% 0 0 -3%;
-    z-index: 100000 !important;
+    z-index: 1000 !important;
+    /* Reducir z-index para evitar problemas de superposición */
 }
-#panel{
+
+/* Estilo para el panel solar (#panel) */
+#panel {
     width: 15%;
     position: absolute;
     left: -2.5%;
@@ -14,23 +18,144 @@
     transform: rotate(150deg);
     margin: -1% 0 0 -1%;
 }
-.units { 
+
+/* Estilo de las unidades */
+.units {
     font-size: 1.2rem;
-    top: -1rem;
     font-weight: bold;
+    position: relative;
+    top: -1rem;
 }
-.temperature i{
-    font-size: 3.0rem; 
+
+/* Estilo del icono de temperatura */
+.temperature i {
+    font-size: 2.5rem;
+    /* Ajuste del tamaño */
     color: red;
 }
-.humidity i{ 
-    font-size: 3.0rem; 
+
+/* Estilo del icono de humedad */
+.humidity i {
+    font-size: 2.5rem;
+    /* Ajuste del tamaño */
     color: blue;
 }
-.dht-labels{ 
-    font-size: 1.5rem; 
-    vertical-align:middle; 
+
+/* Estilo de las etiquetas */
+.dht-labels {
+    font-size: 1.2rem;
+    /* Ajuste del tamaño */
+    vertical-align: middle;
     position: relative;
-    padding: 0 0 0 .5rem;
-    top: -.8rem;
+    padding-left: 0.5rem;
+    top: -0.5rem;
+}
+
+/* Responsividad para pantallas medianas y pequeñas */
+@media (max-width: 768px) {
+    #sun {
+        width: 10%;
+        /* Ajuste del tamaño en pantallas medianas */
+        left: 10%;
+        top: 20%;
+        /* Mover hacia arriba */
+        margin: -2% 0 0 -2%;
+    }
+
+    #panel {
+        width: 20%;
+        /* Aumentar tamaño del panel en pantallas medianas */
+        left: 5%;
+        /* Ajuste de posición */
+        top: 15%;
+        /* Ajuste de posición */
+    }
+
+    .temperature i,
+    .humidity i {
+        font-size: 2rem;
+        /* Reducir tamaño de iconos */
+    }
+
+    .dht-labels {
+        font-size: 1rem;
+        /* Reducir tamaño de etiquetas */
+        top: -0.3rem;
+    }
+
+    .units {
+        font-size: 1rem;
+        /* Reducir tamaño de unidades */
+        top: -0.5rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table thead,
+    .table tbody,
+    .table tr,
+    .table td,
+    .table th {
+        white-space: nowrap;
+        /* Evitar que el contenido se rompa en varias líneas */
+    }
+}
+
+/* Responsividad para pantallas pequeñas (móviles) */
+@media (max-width: 576px) {
+    #sun {
+        width: 15%;
+        /* Aumentar tamaño en pantallas pequeñas */
+        left: 12%;
+        /* Ajuste de posición */
+        top: 15%;
+        /* Ajuste de posición */
+        margin: -1% 0 0 -1%;
+    }
+
+    #panel {
+        width: 25%;
+        /* Aumentar tamaño del panel en pantallas pequeñas */
+        left: 8%;
+        /* Ajuste de posición */
+        top: 10%;
+        /* Ajuste de posición */
+    }
+
+    .temperature i,
+    .humidity i {
+        font-size: 1.5rem;
+        /* Reducir tamaño de iconos para móviles */
+    }
+
+    .dht-labels {
+        font-size: 0.9rem;
+        /* Reducir tamaño de etiquetas */
+        top: -0.2rem;
+    }
+
+    .units {
+        font-size: 0.9rem;
+        /* Reducir tamaño de unidades */
+        top: -0.3rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table thead,
+    .table tbody,
+    .table tr,
+    .table td,
+    .table th {
+        white-space: nowrap;
+        /* Evitar que el contenido se rompa en varias líneas */
+    }
+}
+
+.svg-container svg{
+    max-width: 100%;
 }

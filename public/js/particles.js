@@ -3,7 +3,7 @@ var canvas = document.getElementById('tsparticles'),
    can_h = parseInt(canvas.getAttribute('height')),
    ctx = canvas.getContext('2d');
 
-var BALL_NUM = 50
+var BALL_NUM = 30
 
 var ball = {
       x: 0,

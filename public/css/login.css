@@ -1,34 +1,61 @@
 .body-login {
     background-color: #273B69;
+    min-height: 100vh;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; */
 }
 
-.logo-acade{
+.logo-acade {
     width: 25%;
     margin: auto;
 }
 
-.card-form{
+.card-form {
     background-color: #D5D5D5;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-login {
     text-align: left;
     display: grid;
+    gap: 1rem; /* Separación entre elementos del formulario */
 }
 
 .form-login button {
-    width: 50%;
-    margin: auto;
+    width: 100%;
     background-color: #93bc35;
-    border: #93bc35 2px solid !important;
+    border: #93bc35 2px solid;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-.error-form{
+.error-form {
     color: red;
     text-align: right;
 }
 
-.logo-unimon{
-    width: 15%;
+.logo-unimon {
+    width: 60%;
+    max-width: 150px;
     margin: auto;
+}
+
+/* Media queries para tamaños de pantalla más pequeños */
+@media (max-width: 768px) {
+    .logo-acade, .logo-unimon {
+        width: 80%;
+    }
+
+    .card-form {
+        padding: 1rem;
+    }
+
+    .form-login button {
+        width: 100%; /* Ocupa el ancho completo en móviles */
+    }
 }

@@ -2,3 +2,6 @@
 package-lock.json
 .env
 /public/js/main.js
+# Docker
+.docker-compose.override.yml
+docker-compose.override.yml
